@@ -27,6 +27,9 @@
                    
           <ul class="treeview-menu">
             <li><a href="/admin/products"><i class="fa fa-edit"></i> View/Edit Product</a></li>
+          </ul>         
+          <ul class="treeview-menu">
+            <li><a href="/admin/categories"><i class="fa fa-edit"></i> View/Edit Category</a></li>
           </ul>
         </li>    
             

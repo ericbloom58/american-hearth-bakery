@@ -6,6 +6,8 @@
  * and open the template in the editor.
  */
 
+App::uses('AppController', 'Controller');
+
 // File: /app/Controller/ProductsController.php
 class ProductsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
@@ -34,13 +36,22 @@ class ProductsController extends AppController {
 
     public function admin_add() {
         if ($this->request->is('post')) {
-            //Added this line
-            
-            if ($this->Product->save($this->request->data)) {
-                $this->Flash->success(__('Your product has been saved.'));
+           
+            if ($this->Product->saveAll($this->request->data)) {
+                $this->Session->setFlash("New product successfully created.", 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             }
+            else {
+                   $this->Session->setFlash("An error occurred. Please try again.", 'flash_error');
+            }
         }
+        
+        $this->loadModel('Flavor');
+        $this->loadModel('Package');
+        $this->loadModel('Category');
+        $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
+        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
+        $this->set('categories', $this->Category->find('list', array('fields' => array('id', 'name'))));
         
         $directories = glob('files/galleries/*' , GLOB_ONLYDIR);
         $galleries = array(null => '{none}');
@@ -54,7 +65,18 @@ class ProductsController extends AppController {
     }   
     
     public function admin_edit($id = null) {
-        if (!$id) {
+
+        if ($this->request->is('post')) {
+            
+            if ($this->Product->saveAll($this->request->data)) {
+                $this->Flash->success(__('Your product has been updated.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Flash->error(__('Unable to update your product.'));
+        }
+
+       else {
+             if (!$id) {
             throw new NotFoundException(__('Invalid product'));
         }
 
@@ -62,28 +84,16 @@ class ProductsController extends AppController {
         if (!$product) {
         throw new NotFoundException(__('Invalid product'));
         }
-
-        if ($this->request->is(array('product', 'put'))) {
-            $this->Product->id = $id;
-            if ($this->Product->save($this->request->data)) {
-                $this->Flash->success(__('Your product has been updated.'));
-                return $this->redirect(array('action' => 'index'));
-            }
-            $this->Flash->error(__('Unable to update your product.'));
-        }
-
-        if (!$this->request->data) {
             $this->request->data = $product;
         }
-        $directories = glob('files/galleries/*' , GLOB_ONLYDIR);
-        $galleries = array(null => '{none}');
-        foreach($directories as $d)
-        {
-            $n = explode("/", $d);
-            $name = end($n);
-            $galleries[$name] = $name;
-        }
-        $this->set('galleries', $galleries);
+        
+        
+         $this->loadModel('Flavor');
+        $this->loadModel('Package');
+        $this->loadModel('Category');
+        $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
+        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
+        $this->set('categories', $this->Category->find('list', array('fields' => array('id', 'name'))));
    }
    
    public function admin_delete($id) {

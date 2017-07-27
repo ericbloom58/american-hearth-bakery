@@ -9,20 +9,53 @@ function closeCustomRoxy2(){
 }
 </script>
 <?php $this->end(); ?>
-
+<style>
+    select.form-control {
+        height: 250px;
+    }
+    </style>
 <form method="post" action="/admin/products/add">
 
 		<div class="row form-group">	
-			<?php echo $this->Form->input('Product.name', array('div' => 'col-md-4', 'label' => 'Product Name', 'autofocus', 'class' => 'input form-control')); ?>
-			<?php echo $this->Form->input('Product.page_type', array('div' => 'col-md-4', 'label' => 'Product Type', 'class' => 'input form-control', 'options' => array(
-                        'product' => 'Product Category'
-                    ))); ?>
-                    <?php echo $this->Form->input('Product.linked_gallery', array('div' => 'col-md-4', 'label' => 'Linked Gallery', 'class' => 'input form-control', 'options' =>$galleries)); ?>
+			<?php echo $this->Form->input('Product.name', array('div' => 'col-md-8', 'label' => 'Product Name', 'autofocus', 'class' => 'input form-control')); ?>
+			
 		</div>
 		
 		<div class="row form-group">
-			<?php echo $this->Form->input('Product.product', array('div' => 'col-md-12', 'label' => false, 'rows' => '20', 'cols' => '30', 'style' => 'height: 600px;', 'class' => 'tinymce form-control')); ?>
+			<?php echo $this->Form->input('Product.description', array('div' => 'col-md-12', 'label' => false, 'rows' => '6', 'class' => 'tinymce form-control')); ?>
 		</div>
+    <div class='row form-group'>
+        <div class="col-md-4">
+            <label>Categories</label>
+            <select multiple name='data[Category][]' class="input form-control">
+                <?php foreach($categories as $i => $c):
+                    ?>
+                <option value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Flavors</label>
+            <select multiple name='data[Flavor][]' class="input form-control">
+                <?php foreach($flavors as $i => $c):
+                    ?>
+                <option value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Packaging</label>
+            <select multiple name='data[Package][]' class="input form-control">
+                <?php foreach($packages as $i => $c):
+                    ?>
+                <option value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+    </div>
 
 
 

@@ -9,24 +9,80 @@ function closeCustomRoxy2(){
 }
 </script>
 <?php $this->end(); ?>
-<!-- view/products/edit -->
-<?= $this->Form->create(); ?>
-
+<style>
+    select.form-control {
+        height: 250px;
+    }
+    </style>
+    <?php $cats = array(); $flavs = array(); $pkgs = array();
+    foreach($this->data['Category'] as $c)
+    {
+        $cats[] = $c['id'];
+    }
+     foreach($this->data['Flavor'] as $c)
+    {
+        $flavs[] = $c['id'];
+    }
+     foreach($this->data['Package'] as $c)
+    {
+        $pkgs[] = $c['id'];
+    }
+   ?>
+<?= $this->Form->create('edit'); ?>
+    <?= $this->Form->hidden('Product.id'); ?>
 		<div class="row form-group">	
-			<?php echo $this->Form->input('Product.name', array('div' => 'col-md-4', 'label' => 'Page Name', 'autofocus', 'class' => 'input form-control')); ?>
-			<?php echo $this->Form->input('Product.product_categories', array('div' => 'col-md-4', 'label' => 'Page Type', 'class' => 'input form-control', 'options' => array(
-                        'product' => 'Product Category'
-                    ))); ?>
-                    <?php echo $this->Form->input('Product.linked_gallery', array('div' => 'col-md-4', 'label' => 'Linked Gallery', 'class' => 'input form-control', 'options' =>$galleries)); ?>
+			<?php echo $this->Form->input('Product.name', array('div' => 'col-md-8', 'label' => 'Product Name', 'autofocus', 'class' => 'input form-control')); ?>
+			
 		</div>
 		
 		<div class="row form-group">
-			<?php echo $this->Form->input('Product.product', array('div' => 'col-md-12', 'label' => false, 'rows' => '20', 'cols' => '30', 'style' => 'height: 600px;', 'class' => 'tinymce form-control')); ?>
+			<?php echo $this->Form->input('Product.description', array('div' => 'col-md-12', 'label' => false, 'rows' => '6', 'class' => 'tinymce form-control')); ?>
 		</div>
+    <div class='row form-group'>
+        <div class="col-md-4">
+            <label>Categories</label>
+            <select multiple name='data[Category][]' class="input form-control">
+                <?php foreach($categories as $i => $c):
+                    $selected = "";
+                    if(in_array($i, $cats))
+                            $selected = 'selected';
+                    ?>
+                <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Flavors</label>
+            <select multiple name='data[Flavor][]' class="input form-control">
+                <?php foreach($flavors as $i => $c):
+                    $selected = "";
+                    if(in_array($i, $flavs))
+                            $selected = 'selected';
+                    ?>
+                <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Packaging</label>
+            <select multiple name='data[Package][]' class="input form-control">
+                <?php foreach($packages as $i => $c):
+                    $selected = "";
+                    if(in_array($i, $pkgs))
+                            $selected = 'selected';
+                    ?>
+                <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+    </div>
 
 
 
-<?php  echo $this->Form->hidden('Product.id'); ?>
+<?php // echo $this->Form->hidden('Product.id'); ?>
 <?php // echo $this->Form->hidden('Product.parent_id', array('value' => $parentId)); ?>
 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save Changes</button>
 
@@ -36,5 +92,3 @@ function closeCustomRoxy2(){
   <iframe src="/_/plugins/fileman/index.html?integration=custom&type=files&txtFieldId=ProductSidebarImage" style="width:100%;height:100%" frameborder="0">
   </iframe>
 </div>
-
- 
