@@ -64,7 +64,7 @@
                     </div>
                     <div class="float-right">
                         <ul class="cart">
-                            <li><a href="#"><i class="fa fa-sign-in"></i>Sign in</a> (or) <a href="#">Logout</a> </li>
+                            <li><a href="/admin"><i class="fa fa-sign-in"></i>Sign in</a> (or) <a href="/admin/users/logout">Logout</a> </li>
                             <li><i class="fa fa-shopping-cart"></i>(0) items in cart | ($0.00)</li>
                         </ul>
                     </div>

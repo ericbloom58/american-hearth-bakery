@@ -30,6 +30,12 @@
           </ul>         
           <ul class="treeview-menu">
             <li><a href="/admin/categories"><i class="fa fa-edit"></i> View/Edit Category</a></li>
+          </ul>         
+          <ul class="treeview-menu">
+            <li><a href="/admin/flavors"><i class="fa fa-edit"></i> View/Edit Flavors</a></li>
+          </ul>         
+          <ul class="treeview-menu">
+            <li><a href="/admin/packages"><i class="fa fa-edit"></i> View/Edit Packaging</a></li>
           </ul>
         </li>    
             

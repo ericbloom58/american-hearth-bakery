@@ -14,7 +14,7 @@ class ContentController extends AppController {
      public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
-        $this->Auth->allow('about_us');
+        $this->Auth->allow('about_us', 'home');
     }
 
     //Code for About Us Page
