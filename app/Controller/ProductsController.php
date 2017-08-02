@@ -12,12 +12,26 @@ App::uses('AppController', 'Controller');
 class ProductsController extends AppController {
     public $helpers = array('Html', 'Form', 'Flash');
     public $components = array('Flash');
-   
+
      public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
     }
-
+    
+    //For Products page of the site.
+    function index($id = null) {
+            $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
+           if(!isset($id))
+                $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
+            else
+                $products = $this->Product->findById($id, array('recursive' => 2));
+       
+            $this->set('products', $products);
+        
+//          echo pr($products, true); exit();
+    }
+    // ^ should not currently be in use ^
+        
     public function admin_index() {
         $this->set('products', $this->Product->find('all'));
     }

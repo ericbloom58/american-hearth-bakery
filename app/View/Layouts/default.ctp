@@ -79,7 +79,7 @@
                         <ul>
                             <li class="menu-item current-page-item"><a href="/">Home</a></li>
                             <li class="menu-item"><a href="/about">About Us</a></li>
-                            <li class="menu-item"><a href="/pages/ourproducts">View Products</a></li>
+                            <li class="menu-item"><a href="/products">View Products</a></li>
                             <li class="menu-item"><a href="/pages/order">Place an Order</a></li>
                             <li class="menu-item"><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
