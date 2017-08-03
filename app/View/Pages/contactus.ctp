@@ -3,11 +3,6 @@
             <section class="breadcrumb-wrapper">
                 <div class="container">
                     <h1 class="page-title">Contact Us</h1>
-                    <div class="float-right breadcrumb">
-                        <a href="/">Home</a>
-                      <span>/</span>
-                      <h2>Contact Us</h2>
-                    </div>
                 </div>
             </section>
             <!-- breadcrumb div Ends here -->
@@ -48,7 +43,7 @@
                                 <div class="border corner">
                                     <div class="content-bg">
                                         <ul>
-                                            <li><span class="fa fa-map-marker"></span><p>1013 Wilso Dr, Baltimore, MD 21223</p></li>
+<!--                                            <li><span class="fa fa-map-marker"></span><p>1013 Wilso Dr, Baltimore, MD 21223</p></li>-->
                                             <li><span class="fa fa-phone"></span>410-525-3400</li>
                                             <li><span class="fa fa-envelope"></span><a href="#">info@americanhearthbakery.com</a></li>
                                             <li><span class="fa fa-globe"></span><a href="#">www.americanhearthbakery.com</a></li>
@@ -57,17 +52,17 @@
                                     <span class="bottom-left"></span>
                                 </div>
                             </aside>
+                            
+                            <style>
+                                .sushi-w-hours {
+                                    margin-top: 50px;
+                                }
+                            </style>
+                            
                             <aside class="widget sushi-w-hours">
-                                <h3 class="widgettitle">Working Hours</h3>
+                                <h3 class="widgettitle">Ordering Hours</h3>
                                 <ul class="sushi-w-hours">
-                                    <li>Monday: <span>10 am - 10 pm</span></li>
-                                    <li>Tuesday: <span>10 am - 10 pm</span></li>
-                                    <li>Wednesday: <span>10 am - 10 pm</span></li>
-                                    <li>Thursday: <span>10 am - 10 pm</span></li>
-                                    <li>Friday: <span>10 am - 10 pm</span></li>
-                                    <li>Saturday: <span>10 am - 10 pm</span></li>
-                                    <li>Sunday: <span>Holiday</span></li>
-                                    <li>CLOSED Mondays &amp; Tuesday </li>
+                                    <li>Ordering by phone closes at 2:30 PM for delivery the next day.</li>
                                 </ul>
                             </aside>
                         </div>

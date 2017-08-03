@@ -3,11 +3,6 @@
             <section class="breadcrumb-wrapper">
                 <div class="container">
                     <h1 class="page-title">About</h1>
-                    <div class="float-right breadcrumb">
-                        <a href="/">Home</a>
-                        <span>/</span>
-                      <h2>About</h2>
-                    </div>
                 </div>
             </section>
             <!-- breadcrumb div Ends here -->

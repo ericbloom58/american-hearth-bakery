@@ -17,7 +17,7 @@
                                 data-y="130" 					 
                                 data-speed="1000" 
                                 data-start="2500" 
-                                data-easing="easeOutExpo"><span>Welcome </span>Everybody 				 					 
+                                data-easing="easeOutExpo"><span><!--Welcome--> </span> <!--Everybody--> 				 					 
                             </div>
                         
                             <div class="tp-caption custom_subtitle sft"
@@ -25,7 +25,7 @@
                                 data-y="186" 					 
                                 data-speed="1000" 
                                 data-start="3000" 
-                                data-easing="easeOutExpo">Most Convenient Bakery				 					 
+                                data-easing="easeOutExpo"><!--Most Convenient Bakery-->				 					 
                             </div>
                         
                             <div class="tp-caption custom_content sfl"
@@ -33,8 +33,8 @@
                                 data-y="247" 					 
                                 data-speed="1000" 
                                 data-start="3500" 
-                                data-easing="easeOutExpo">We are a well known and well priced bakery. <br>
-                                Order from us Today	
+                                data-easing="easeOutExpo"><!--We are a well known and well priced bakery. <br>
+                                Order from us Today	-->
                             </div>
                         </li>  
                   </ul>
@@ -47,18 +47,36 @@
                     <p class="theme-ribbon ribbon">Welcome to American Hearth Bakery!</p>
                 </div>
             </div>
-
+     
+<style>
+    .service-ico {
+        margin-left:20%;
+    }
+</style>            
+            
             <div class="main-container">
                 <div class="container">
+                    <section id="primary" class="content-full-width">
+                        <div class="service-ico">
+                            <ul>
+                                <li><a href="#"><span class="fa fa-coffee"></span>Handmade</a></li>
+                                <li><a href="#"><span class="fa fa-home"></span>Fresh Daily</a></li>
+                                <li><a href="#"><span class="fa fa-cutlery"></span>Flavor Intense</a></li>
+                            </ul>
+                        </div>
+                    </section>         
+                        
+<!--                    <div class="margin60"></div>
+
                     <section class="intro-text type1">
-                        <h2><b>American Hearth Bakery</b> - A local Gem</h2>
+                        <h2> <b>American Hearth Bakery</b> </h2>
                         <div class="column dt-sc-three-fourth first">
                             <p><?= $home['Content']['content']; ?></p>
                         </div>
                         <div class="column dt-sc-one-fourth">
                             <a href="/pages/contactus" class="dt-sc-button theme-btn small">Contact Us</a>
                         </div>
-                    </section>
+                    </section>-->
                 </div>
                 <div class="margin50"></div>
                

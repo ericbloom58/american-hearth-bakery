@@ -95,30 +95,21 @@
             <div class="footer-top"><span class="driver-logo"></span></div>
             <footer>
                 <div class="container">
-                    <div class="dt-sc-one-fourth column first">
+                    <div class="dt-sc-one-third column first">
                         <aside class="widget hotel-timing">
-                            <h3 class="widgettitle">Business Hours</h3>
+                            <h3 class="widgettitle">Ordering Hours</h3>
                             <ul>
-                                <li><span class="day">Monday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Tuesday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Wednesday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Thursday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Friday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Saturday: </span> 10 am - 10 pm </li>
-                                <li><span class="day">Sunday: </span> Holiday </li>
+                                <li><span class="day"> Ordering by phone closes at 2:30 PM for delivery the next day. </span>  </li>
                             </ul>
-                            <span class="closed">CLOSED Mondays &amp; Tuesday </span>
                         </aside>
                     </div>
-                    <div class="dt-sc-one-fourth column">
-                       
-                    </div>
-                    <div class="dt-sc-one-half column">
+                    <div class="dt-sc-one-third column"></div>
+                    <div class="dt-sc-one-third column">
                         <h3 class="widgettitle">Contact Us</h3>
-                        <div class="dt-sc-one-half column first">
+<!--                        <div class="dt-sc-one-half column first">
                             <aside class="widget widget_text">
-                                <!--<div id="footer_map"> </div>-->
-								    <!-- map was here -->    
+                                <div id="footer_map"> </div>
+								     map was here     
 								<div class="wsite-map">
 									<iframe allowtransparency="true" frameborder="0" scrolling="no" 
                                     style="
@@ -128,23 +119,22 @@
 									</iframe>
 								</div>
                             </aside>
-                        </div>
-                        <div class="dt-sc-one-half column">
+                        </div>-->
+                        <!--<div class="dt-sc-one-half column">-->
                             <aside class="widget widget_text">
-                                <p><span class="fa fa-map-marker"></span><strong>Address:</strong> 1013 Wilso Dr, Baltimore, MD 21223</p>
+                                <p><span class="fa fa-map-marker"></span><strong>We Deliver To:<br></strong> The Greater Baltimore/Washington Area</p>
                                 <p><span class="fa fa-phone"></span><strong>Phone:</strong> 410-525-3400</p>
                                 <p><span class="fa fa-envelope"></span><strong>Mail:</strong> <a href="#">info@americanhearthbakery.com</a></p>
                             </aside>
-                        </div>
+                        <!--</div>-->
                     </div>
                 </div>
                 <div class="footer-info">
                     <div class="container">
-                        <p class="copyright">&copy; 2013 <a href="http://themeforest.net/user/BuddhaThemes/portfolio"> BuddhaThemes</a>. Bella Motel</p>
                         <ul class="footer-links">
                             <li><a href="/">Home</a></li>
-                            <li><a href="/pages/aboutus">About Us</a></li>
-                            <li><a href="/pages/ourproducts">View Products</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/products">View Products</a></li>
                             <li><a href="/pages/order">Place an Order</a></li>
                             <li><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
