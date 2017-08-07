@@ -34,7 +34,7 @@ Display Flavors & Packaging-->
                    <section id="primary" class="content-full-width">
 <!--                        <h2 class="block-title">Our Products</h2>-->
                     <?php foreach($products as $category): ?>
-                        <h3><?= $category['Category']['name']; ?></h3>
+                        <h3 class="block-title"><?= $category['Category']['name']; ?></h3>
                         <?php if(empty($category['Product'])): ?>
                         <p><em>--- None Listed ---</em></p>
                         <?php endif; ?>
