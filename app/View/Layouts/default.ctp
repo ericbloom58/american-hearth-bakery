@@ -74,8 +74,8 @@
             <!-- header div Starts here -->
             <header class="header1">
                 <div class="container">
-                   <img src="/images/ahblogo.jpg" style="height:100px;">
-                    <nav id="main-menu" class="sf-menu">
+                   <img src="/images/ahblogo.jpg" style="height:150px; margin-left: -200px;">
+                    <nav id="main-menu" class="sf-menu" style="margin-top: 25px;">
                         <ul>
                             <li class="menu-item current-page-item"><a href="/">Home</a></li>
                             <li class="menu-item"><a href="/about">About Us</a></li>

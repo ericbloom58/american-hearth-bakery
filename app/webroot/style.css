@@ -322,7 +322,7 @@
 	
 	/*----*****---- << Menu >> ----*****----*/
 	#main-menu { float:right; }
-	#main-menu li { position:relative; float:left; display:inline; font-weight:400; font-size:16px; padding-bottom:0; line-height:100px; margin-left:3px; }
+	#main-menu li { position:relative; float:left; display:inline; font-weight:400; font-size:20px; padding-bottom:0; line-height:100px; margin-left:3px; }
 	#main-menu li li { margin-left:0; }
 	#main-menu li a { display:block; padding:0 18px 0px 10px; }
 	#main-menu li a, #main-menu li.current-page-item ul li a, #main-menu li a:hover, #main-menu li.current-page-item a, #main-menu li.current-page-item ul li a:hover { color:#464646; }

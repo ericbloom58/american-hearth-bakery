@@ -45,11 +45,18 @@ Display Flavors & Packaging-->
                         <div class="column dt-sc-one-third <?= $first; ?>">
                                 <div class='product-name'><?= $p['name']; ?></div><small><em><?= $p['description']; ?></em></small>
                             <br>
-                            <ol class="dt-sc-fancy-list  blue  decimal">
+                            <ul class="dt-sc-fancy-list  blue  decimal">
+                                <label> Quantity </label>
                                 <?php foreach($p['Flavor'] as $flavor): ?>
-                                <li><span> <?= $flavor['name']; ?>  <?= $flavor['description']; ?> </span></li>
+                                <li>
+                                    <input style="width:30px;" name='data[Order][quantity]' <?php if(isset($this->data) && !empty($this->data['Order'])) { echo "value = '" . $this->data['Order']['quantity'] . "' "; } ?> type="text" class="input-text" pattern="([0-9])" title="Only Numerical Characters are allowed." required>
+                                    <span> <?= $flavor['name']; ?>  <?= $flavor['description']; ?> </span>
+                                    <select name='specials'>
+                                        <option valoe='0'> 1 </option>
+                                    </select>
+                                </li>
                                 <?php endforeach; ?>
-                            </ol>
+                            </ul>
                         </div>
                         <!-- End for each here?  -->
                         
