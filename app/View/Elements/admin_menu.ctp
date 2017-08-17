@@ -36,6 +36,9 @@
           </ul>         
           <ul class="treeview-menu">
             <li><a href="/admin/packages"><i class="fa fa-edit"></i> View/Edit Packaging</a></li>
+          </ul>         
+          <ul class="treeview-menu">
+            <li><a href="/admin/options"><i class="fa fa-edit"></i> View/Edit Options</a></li>
           </ul>
         </li>    
             

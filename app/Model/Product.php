@@ -33,6 +33,13 @@ class Product extends AppModel {
                 'foreignKey' => 'product_id',
                 'associationForeignKey' => 'flavor_id',
                 'unique' => true
+            ),
+        'Option' => array(
+                'className' => 'Option',
+                'joinTable' => 'product_options',
+                'foreignKey' => 'product_id',
+                'associationForeignKey' => 'option_id',
+                'unique' => true
             )
     );
     public $hasMany = array(

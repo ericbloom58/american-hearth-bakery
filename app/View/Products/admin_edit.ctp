@@ -14,7 +14,7 @@ function closeCustomRoxy2(){
         height: 250px;
     }
     </style>
-    <?php $cats = array(); $flavs = array(); $pkgs = array();
+    <?php $cats = array(); $flavs = array(); $pkgs = array(); $opts = array();
     foreach($this->data['Category'] as $c)
     {
         $cats[] = $c['id'];
@@ -27,6 +27,11 @@ function closeCustomRoxy2(){
     {
         $pkgs[] = $c['id'];
     }
+     foreach($this->data['Option'] as $c)
+    {
+        $opts[] = $c['id'];
+    }
+    
    ?>
 <?= $this->Form->create('edit'); ?>
     <?= $this->Form->hidden('Product.id'); ?>
@@ -71,6 +76,19 @@ function closeCustomRoxy2(){
                 <?php foreach($packages as $i => $c):
                     $selected = "";
                     if(in_array($i, $pkgs))
+                            $selected = 'selected';
+                    ?>
+                <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Option</label>
+            <select multiple name='data[Option][]' class="input form-control">
+                <?php foreach($options as $i => $c):
+                    $selected = "";
+                    if(in_array($i, $opts))
                             $selected = 'selected';
                     ?>
                 <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>

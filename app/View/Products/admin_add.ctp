@@ -55,6 +55,16 @@ function closeCustomRoxy2(){
                 endforeach; ?>
             </select>
         </div>
+        <div class="col-md-4">
+            <label>Options</label>
+            <select multiple name='data[Option][]' class="input form-control">
+                <?php foreach($options as $i => $c):
+                    ?>
+                <option value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
     </div>
 
 

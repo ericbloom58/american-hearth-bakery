@@ -40,7 +40,7 @@ Display Flavors & Packaging-->
                         <?php endif; ?>
 
                         <?php $counter = 0; foreach($category['Product'] as $p) { $first=""; if($counter % 3 == 0) {
-                            echo '<div class="dt-sc-hr-invisible"></div>'; $first="first"; } $counter++; ?>
+                            /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; } $counter++; ?>
                         <!--<h3>Cookies</h3>-->
                         <div class="column dt-sc-one-third <?= $first; ?>">
                                 <div class='product-name'><?= $p['name']; ?></div><small><em><?= $p['description']; ?></em></small>

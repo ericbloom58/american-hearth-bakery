@@ -40,20 +40,35 @@ Display Flavors & Packaging-->
                         <?php endif; ?>
 
                         <?php $counter = 0; foreach($category['Product'] as $p) { $first=""; if($counter % 3 == 0) {
-                            echo '<div class="dt-sc-hr-invisible"></div>'; $first="first"; } $counter++; ?>
+                            /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; } $counter++; ?>
                         <!--<h3>Cookies</h3>-->
                         <div class="column dt-sc-one-third <?= $first; ?>">
                                 <div class='product-name'><?= $p['name']; ?></div><small><em><?= $p['description']; ?></em></small>
                             <br>
                             <ul class="dt-sc-fancy-list  blue  decimal">
                                 <label> Quantity </label>
+                                    <label> Options </label>
                                 <?php foreach($p['Flavor'] as $flavor): ?>
                                 <li>
                                     <input style="width:30px;" name='data[Order][quantity]' <?php if(isset($this->data) && !empty($this->data['Order'])) { echo "value = '" . $this->data['Order']['quantity'] . "' "; } ?> type="text" class="input-text" pattern="([0-9])" title="Only Numerical Characters are allowed." required>
-                                    <span> <?= $flavor['name']; ?>  <?= $flavor['description']; ?> </span>
-                                    <select name='specials'>
-                                        <option valoe='0'> 1 </option>
+                                    
+                                    <?php if(empty($p['option']) OR (($p['option'])==($p['option'][1]))): ?>
+                                    <br> <p>Hello Testing </p>
+                                    <?php endif; ?>
+                                    <select name='options'>
+                                        <?php foreach($p['Option'] as $option): ?>
+                                        <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
+                                        <?php endforeach; ?> 
                                     </select>
+                                    
+                                    <span> <?= $flavor['name']; ?>  <?= $flavor['description']; ?> </span>
+                                    
+<!--                                    <select name='specials'>
+                                        <option value='0'> 1 </option>
+                                        <option value='1'> 2 </option>
+                                    </select>-->
+                                    
+                                    
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
