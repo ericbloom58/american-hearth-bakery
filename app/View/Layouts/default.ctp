@@ -160,6 +160,7 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="/js/jquery.gmap.min.js"></script>
     
+	<script src="/js/custom.js"></script>
 	<script type="text/javascript" src="/js/twitter/jquery.tweet.min.js"></script>
     
 	<!-- Revolution Slider Starts -->

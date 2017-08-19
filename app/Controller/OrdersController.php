@@ -35,7 +35,31 @@ class OrdersController extends AppController{
 //          echo pr($products, true); exit();
     }
     // ^ should not currently be in use ^
-
+    function test($id = null) {
+            $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
+           if(!isset($id))
+                $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
+            else
+                $products = $this->Product->findById($id, array('recursive' => 2));
+       
+            $this->set('products', $products);
+        
+//          echo pr($products, true); exit();
+    }
+    
+    function ajaxAddToOrder($id) {
+        if(!empty($this->request->data))
+        {
+            $this->request->data["id"] = $id;
+                if($this->Cart->add($this->request->data))
+                    $this->Session->setFlash('Your Products have been added to your Order.');  
+                else{
+                    $this->Session->setFlash('An error occured, please try again.');
+                }
+        }
+    }
+    
+    
     public function view($id) {
         if (!$id) {
             throw new NotFoundException(__('Invalid product'));
