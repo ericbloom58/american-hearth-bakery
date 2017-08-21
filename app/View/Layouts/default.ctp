@@ -80,7 +80,7 @@
                             <li class="menu-item current-page-item"><a href="/">Home</a></li>
                             <li class="menu-item"><a href="/about">About Us</a></li>
                             <li class="menu-item"><a href="/products">View Products</a></li>
-                            <li class="menu-item"><a href="/orders">Place an Order</a></li>
+                            <li class="menu-item"><a href="/orders/creator">Place an Order</a></li>
                             <li class="menu-item"><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
                     </nav>
@@ -135,7 +135,7 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="/about">About Us</a></li>
                             <li><a href="/products">View Products</a></li>
-                            <li><a href="/orders">Place an Order</a></li>
+                            <li><a href="/orders/creator">Place an Order</a></li>
                             <li><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
                     </div>
@@ -168,7 +168,10 @@
     
     <script src="/js/jquery.inview.js"></script>
     <script src="/js/jquery.donutchart.js"></script>
+    
+  
    
+     <?php echo $this->fetch('scripts'); ?>
             
     <script type="text/javascript">
 	jQuery(document).ready(function($){	
@@ -223,9 +226,8 @@
 		});	
 	});
 	</script>
+       
     <!-- Revolution Slider Ends -->
-    
-    <script src="js/custom.js"></script>
     
 </body>
 </html>

@@ -28,6 +28,7 @@
 	Router::connect('/', array('controller' => 'content', 'action' => 'home'));
         Router::connect('/about', array('controller' => 'content', 'action' => 'about_us'));
         Router::connect('/admin', array('controller' => 'users', 'action' => 'login', 'admin' => true));
+        Router::connect('/orders', array('controller'=> 'orders', 'action'=> 'viewer'));
         
         Router::connect('/admin/users/logout', array('controller' => 'content', 'action' => 'home'));
         //Router::connect('/', array('controller' => 'posts', 'action' => 'home'));

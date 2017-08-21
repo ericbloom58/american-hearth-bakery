@@ -36,6 +36,7 @@
         Name
     </label>
     <input class='input form-control' name='data[Flavor][name]' type='text' placeholder="Enter new name here..." />
+        <?php echo $this->Form->input('Flavor.image_url', array('type'=>'file', 'div' => 'col-md-4', 'label' => 'Flavor Image...', 'class' => 'input form-control')); ?>	
     </div>
     </div>
     <div class='row form-group'>

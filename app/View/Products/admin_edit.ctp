@@ -33,10 +33,11 @@ function closeCustomRoxy2(){
     }
     
    ?>
-<?= $this->Form->create('edit'); ?>
+<?= $this->Form->create('edit', array('type' => 'file')); ?>
     <?= $this->Form->hidden('Product.id'); ?>
 		<div class="row form-group">	
 			<?php echo $this->Form->input('Product.name', array('div' => 'col-md-8', 'label' => 'Product Name', 'autofocus', 'class' => 'input form-control')); ?>
+                        <?php echo $this->Form->input('Product.image_url', array('type'=>'file', 'div' => 'col-md-4', 'label' => 'Product Image...', 'class' => 'input form-control')); ?>
 			
 		</div>
 		

@@ -10,7 +10,7 @@
         opacity: 0.25;
     }
 </style>
-
+<form id='orderForm' method='post' action='/orders/creator'>
 <!-- breadcrumb div Starts here -->
 <!--            <section class="breadcrumb-wrapper">
                 <div class="container">
@@ -61,14 +61,17 @@
                                                                  <?= $flavor['name']; ?>
                                                             </td>
                                                             <td>
-                                                                <input style="width:30px;" name='data[Order][quantity]' <?php if(isset($this->data) && !empty($this->data['Order'])) { echo "value = '" . $this->data['Order']['quantity'] . "' "; } ?> type="text" class="input-text" pattern="([0-9])" title="Only Numerical Characters are allowed." required>
+                                                                <input style="width:30px;" name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]' type="text" class="input-text" pattern="([0-9])" title="Only Numerical Characters are allowed.">
                                                             </td>
-                                                            <td>                                                           
-                                                                <select name='options'>
+                                                            <td>    
+                                                                <?php if(!empty($p['Option'])): ?>
+                                                                    <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
+                                                                <select multiple name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][options][]'>
                                                                 <?php foreach($p['Option'] as $option): ?>
                                                                     <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
                                                                 <?php endforeach; ?> 
                                                                 </select>
+                                                                <?php endif;  endif; ?>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -85,12 +88,23 @@
                     </section>
                     <section id="secondary" class="left-sidebar" style="margin-left:-40%;">
                         <aside class="widget widget_categories">
+<!--                            <a class="dt-sc-button small blue" type='submit' target="_blank" href="#">Place Order</a> Which Do I use? -->
                             <p>*Please review your Order before placing it*</p>
-                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
+                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/> <!--Which Do I use? -->
                         </aside>
                     </section>
                 </div>
             </div>
 
             
-            
+</form>  
+<?php $this->start('scripts'); ?>
+<script>
+    jQuery("#orderForm").submit(function(e) {
+        $answer = confirm("Are you sure you want to submit this order?");
+        if(!$answer)
+         e.preventDefault();
+    });
+    
+    </script>
+    <?php $this->end(); ?>

@@ -10,7 +10,9 @@
             <?= $this->Form->create('edit'); ?>
     <div class='row form-group'>
     <div class='col-md-12'>
-        <?= $this->Form->input('Flavor.name', array('class' => 'input form-control')); ?>
+        <?= $this->Form->input('Flavor.name', array('class' => 'input form-control')); ?> 
+        <?php echo $this->Form->input('Flavor.image_url', array('type'=>'file', 'div' => 'col-md-4', 'label' => 'Flavor Image...', 'class' => 'input form-control')); ?>
+			
     
     </div>
     </div>

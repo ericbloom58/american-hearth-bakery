@@ -16,7 +16,7 @@ App::uses('CakeSession', 'Model/Datasource');
  *
  * @package       app.Model
  */
-class Order extends AppModel {
+class _Order extends AppModel {
     public $useTable = false;
     /* when passing values make the id what it is not the name what it is*/
     

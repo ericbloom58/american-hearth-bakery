@@ -26,6 +26,18 @@ App::uses('AppController', 'Controller');
        {
            if(!empty($this->request->data))
            {
+               
+               $uploaddir = WWW_ROOT . 'files' . DS . 'uploads' . DS;
+            
+            // name of file on the server
+            $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
+          //  pr($uploadfile);
+            if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+                    $this->request->data['Flavor']['image_url'] = $uploadfile;
+            else 
+                unset($this->request->data['Flavor']['image_url']);
+            
+               
                $this->Flavor->create();
                if($this->Flavor->save($this->request->data))
                {
@@ -44,6 +56,18 @@ App::uses('AppController', 'Controller');
            
            if(!empty($this->request->data))
            {
+               
+               $uploaddir = WWW_ROOT . 'files' . DS . 'uploads' . DS;
+            
+            // name of file on the server
+            $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
+          //  pr($uploadfile);
+            if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+                    $this->request->data['Flavor']['image_url'] = $uploadfile;
+            else 
+                unset($this->request->data['Flavor']['image_url']);
+            
+               
                $this->Flavor->id = $id;
                if($this->Flavor->save($this->request->data))
                {
