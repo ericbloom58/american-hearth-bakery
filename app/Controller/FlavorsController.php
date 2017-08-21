@@ -33,9 +33,13 @@ App::uses('AppController', 'Controller');
             $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
           //  pr($uploadfile);
             if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+            {
                     $this->request->data['Flavor']['image_url'] = $uploadfile;
+            }
             else 
+            {
                 unset($this->request->data['Flavor']['image_url']);
+            }
             
                
                $this->Flavor->create();
@@ -63,9 +67,13 @@ App::uses('AppController', 'Controller');
             $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
           //  pr($uploadfile);
             if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+            {
                     $this->request->data['Flavor']['image_url'] = $uploadfile;
+            }
             else 
+            {
                 unset($this->request->data['Flavor']['image_url']);
+            }
             
                
                $this->Flavor->id = $id;
