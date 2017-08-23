@@ -29,7 +29,7 @@
     <div class='col-md-4'>
 
         <h2>Add Flavor</h2>
-<form action='/admin/flavors/add' method='POST'>
+<form action='/admin/flavors/add' method='POST'  enctype="multipart/form-data">
     <div class='row form-group'>
     <div class='col-md-12'>
     <label>

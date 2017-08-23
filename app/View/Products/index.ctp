@@ -47,7 +47,16 @@ Display Flavors & Packaging-->
                             <br>
                             <ol class="dt-sc-fancy-list  blue  decimal">
                                 <?php foreach($p['Flavor'] as $flavor): ?>
-                                <li><span> <?= $flavor['name']; ?>  <?= $flavor['description']; ?> </span></li>
+                                <li><span> 
+                                        <?php if(!empty($flavor['image_url'])): ?>
+                                        <!--<a class="fa fa-map-marker" href="<?php $flavor['image_url']; ?>"> </a>-->
+                                        <?php endif; ?>
+                                        <strong><?= $flavor['name']; ?></strong>  
+                                        <?php if(!empty($flavor['description'])): ?>
+                                            <?= $flavor['description']; ?>
+                                        <?php endif; ?>
+                                    </span>
+                                </li>
                                 <?php endforeach; ?>
                             </ol>
                         </div>

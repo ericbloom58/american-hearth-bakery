@@ -61,7 +61,7 @@
                                                                  <?= $flavor['name']; ?>
                                                             </td>
                                                             <td>
-                                                                <input style="width:30px;" name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]' type="text" class="input-text" pattern="([0-9])" title="Only Numerical Characters are allowed.">
+                                                                <input style="width:100px;" name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]' type="text" class="input-text" title="Only Numerical Characters are allowed.">
                                                             </td>
                                                             <td>    
                                                                 <?php if(!empty($p['Option'])): ?>
@@ -87,10 +87,10 @@
                                 <?php endforeach; ?>
                     </section>
                     <section id="secondary" class="left-sidebar" style="margin-left:-40%;">
-                        <aside class="widget widget_categories">
-<!--                            <a class="dt-sc-button small blue" type='submit' target="_blank" href="#">Place Order</a> Which Do I use? -->
-                            <p>*Please review your Order before placing it*</p>
-                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/> <!--Which Do I use? -->
+                        <aside class="widget widget_categories">                            
+                            <h4>Please input the date you would like your order to arrive.</h4>
+                            <input name='data[Order][dateneeded]' type="date">
+                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
                         </aside>
                     </section>
                 </div>

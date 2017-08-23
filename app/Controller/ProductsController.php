@@ -55,14 +55,14 @@ class ProductsController extends AppController {
             // name of file on the server
             $uploadfile = $uploaddir . basename($this->request->data['Product']['image_url']['name']);
 //            pr($uploadfile);
-            if(move_uploaded_file($this->request->data['ProductImage']['url']['tmp_name'], $uploadfile))
+            if(move_uploaded_file($this->request->data['Product']['image_url']['tmp_name'], $uploadfile))
                     $this->request->data['Product']['image_url'] = $uploadfile;
             else 
                 unset($this->request->data['Product']['image_url']);
             
             if ($this->Product->saveAll($this->request->data)) {
                 $this->Session->setFlash("New product successfully created.", 'flash_success');
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect('/admin/products');
             }
             else {
                    $this->Session->setFlash("An error occurred. Please try again.", 'flash_error');
@@ -97,8 +97,8 @@ class ProductsController extends AppController {
             
             // name of file on the server
             $uploadfile = $uploaddir . basename($this->request->data['Product']['image_url']['name']);
-          //  pr($uploadfile);
-            if(move_uploaded_file($this->request->data['ProductImage']['url']['tmp_name'], $uploadfile))
+//            pr($uploadfile);
+            if(move_uploaded_file($this->request->data['Product']['image_url']['tmp_name'], $uploadfile))
                     $this->request->data['Product']['image_url'] = $uploadfile;
             else 
                 unset($this->request->data['Product']['image_url']);
@@ -106,9 +106,10 @@ class ProductsController extends AppController {
 //             pr($this->request->data); 
 //             pr($_FILES);
 //            exit();
+            
             if ($this->Product->saveAll($this->request->data)) {
-                $this->Flash->success(__('Your product has been updated.'));
-                return $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash("Your product has been successfully updated.", 'flash_success');
+                return $this->redirect('/admin/products');
             }
             $this->Flash->error(__('Unable to update your product.'));
         }

@@ -7,7 +7,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <?= $this->Form->create('edit'); ?>
+            <?= $this->Form->create('edit', array('type' => 'file')); ?>
     <div class='row form-group'>
     <div class='col-md-12'>
         <?= $this->Form->input('Flavor.name', array('class' => 'input form-control')); ?> 

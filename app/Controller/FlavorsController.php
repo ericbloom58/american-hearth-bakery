@@ -32,7 +32,7 @@ App::uses('AppController', 'Controller');
             // name of file on the server
             $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
           //  pr($uploadfile);
-            if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+            if(move_uploaded_file($this->request->data['Flavor']['image_url']['tmp_name'], $uploadfile))
             {
                     $this->request->data['Flavor']['image_url'] = $uploadfile;
             }
@@ -66,7 +66,7 @@ App::uses('AppController', 'Controller');
             // name of file on the server
             $uploadfile = $uploaddir . basename($this->request->data['Flavor']['image_url']['name']);
           //  pr($uploadfile);
-            if(move_uploaded_file($this->request->data['FlavorImage']['url']['tmp_name'], $uploadfile))
+            if(move_uploaded_file($this->request->data['Flavor']['image_url']['tmp_name'], $uploadfile))
             {
                     $this->request->data['Flavor']['image_url'] = $uploadfile;
             }
