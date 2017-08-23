@@ -49,7 +49,7 @@ Display Flavors & Packaging-->
                                 <?php foreach($p['Flavor'] as $flavor): ?>
                                 <li><span> 
                                         <?php if(!empty($flavor['image_url'])): ?>
-                                        <!--<a class="fa fa-map-marker" href="<?php $flavor['image_url']; ?>"> </a>-->
+                                        <a class="fa fa-camera" href="<?php $flavor['image_url']; ?>"> </a>
                                         <?php endif; ?>
                                         <strong><?= $flavor['name']; ?></strong>  
                                         <?php if(!empty($flavor['description'])): ?>
