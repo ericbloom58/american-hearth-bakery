@@ -56,7 +56,8 @@ class ProductsController extends AppController {
             $uploadfile = $uploaddir . basename($this->request->data['Product']['image_url']['name']);
 //            pr($uploadfile);
             if(move_uploaded_file($this->request->data['Product']['image_url']['tmp_name'], $uploadfile))
-                    $this->request->data['Product']['image_url'] = $uploadfile;
+//                    $this->request->data['Product']['image_url'] = $uploadfile;
+            $this->request->data['Product']['image_url'] = "/files/uploads/" . basename($this->request->data['Product']['image_url']['name']);
             else 
                 unset($this->request->data['Product']['image_url']);
             
@@ -99,7 +100,8 @@ class ProductsController extends AppController {
             $uploadfile = $uploaddir . basename($this->request->data['Product']['image_url']['name']);
 //            pr($uploadfile);
             if(move_uploaded_file($this->request->data['Product']['image_url']['tmp_name'], $uploadfile))
-                    $this->request->data['Product']['image_url'] = $uploadfile;
+//                    $this->request->data['Product']['image_url'] = $uploadfile;
+            $this->request->data['Product']['image_url'] = "/files/uploads/" . basename($this->request->data['Product']['image_url']['name']);
             else 
                 unset($this->request->data['Product']['image_url']);
             

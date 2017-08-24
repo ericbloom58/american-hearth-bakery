@@ -55,7 +55,7 @@
                                                             <th> Quantity </th>
                                                             <th> Options </th>
                                                         </tr>
-                                                    <?php foreach($p['Flavor'] as $flavor): ?>
+                                                    <?php foreach($p['Flavor'] as $flavor): ?>+
                                                         <tr>
                                                             <td> 
                                                                  <?= $flavor['name']; ?>

@@ -45,7 +45,7 @@ Display Flavors & Packaging-->
                         <div class="column dt-sc-one-third <?= $first; ?>">
                                 <div class='product-name'>
                                         <?php if(!empty($p['image_url'])): ?>
-                                        <a class="fa fa-camera" href="<?php $p['image_url']; ?>" target="_blank"> </a>
+                                        <a class="fa fa-camera" href="<?php echo $p['image_url']; ?>" target="_blank"> </a>
                                         <?php endif; ?> 
                                         <?= $p['name']; ?>
                                 </div><small><em><?= $p['description']; ?></em></small>
@@ -54,7 +54,7 @@ Display Flavors & Packaging-->
                                 <?php foreach($p['Flavor'] as $flavor): ?>
                                 <li><span> 
                                         <?php if(!empty($flavor['image_url'])): ?>
-                                        <a class="fa fa-camera" href="<?php $flavor['image_url']; ?>" target="_blank"> </a>
+                                        <a class="fa fa-camera" href="<?php echo $flavor['image_url']; ?>" target="_blank"> </a>
                                         <?php endif; ?> <!-- should open image in new window -->
                                         <strong><?= $flavor['name']; ?></strong>  
                                         <?php if(!empty($flavor['description'])): ?>
