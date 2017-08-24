@@ -43,14 +43,19 @@ Display Flavors & Packaging-->
                             /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; } $counter++; ?>
                         <!--<h3>Cookies</h3>-->
                         <div class="column dt-sc-one-third <?= $first; ?>">
-                                <div class='product-name'><?= $p['name']; ?></div><small><em><?= $p['description']; ?></em></small>
+                                <div class='product-name'>
+                                        <?php if(!empty($p['image_url'])): ?>
+                                        <a class="fa fa-camera" href="<?php $p['image_url']; ?>" target="_blank"> </a>
+                                        <?php endif; ?> 
+                                        <?= $p['name']; ?>
+                                </div><small><em><?= $p['description']; ?></em></small>
                             <br>
                             <ol class="dt-sc-fancy-list  blue  decimal">
                                 <?php foreach($p['Flavor'] as $flavor): ?>
                                 <li><span> 
                                         <?php if(!empty($flavor['image_url'])): ?>
-                                        <a class="fa fa-camera" href="<?php $flavor['image_url']; ?>"> </a>
-                                        <?php endif; ?>
+                                        <a class="fa fa-camera" href="<?php $flavor['image_url']; ?>" target="_blank"> </a>
+                                        <?php endif; ?> <!-- should open image in new window -->
                                         <strong><?= $flavor['name']; ?></strong>  
                                         <?php if(!empty($flavor['description'])): ?>
                                             <?= $flavor['description']; ?>
@@ -68,3 +73,19 @@ Display Flavors & Packaging-->
                    </section>
                 </div>
             </div>
+
+            <!-- crap for hoverer -->
+<!--                <div class="col-md-6 col-xs-12">
+                        <div class="hoverer">
+                            <div class='picture-space'>
+                            <img src="/img/grandfather.PNG" class="img-responsive" style=" border: 5px solid #661919; " alt="">
+                            <span>
+                                <div class="video-container">
+                                    <div class='video-space'>
+                                    <iframe src="https://www.youtube.com/embed/By5dSOUJd_U" style=" border: 5px solid #661919; " height="100%" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                    </div>-->
