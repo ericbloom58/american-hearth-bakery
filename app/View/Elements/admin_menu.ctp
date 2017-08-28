@@ -4,6 +4,20 @@
         <li class="header"></li>
                 <li class="header">Admin Dashboard</li>
            
+                
+        <li class="<?= $section == 'web' ? 'active' : ''; ?> treeview">
+          <a href="#">
+            <i class="fa fa-globe"></i> <span>My Orders</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+                   
+          <ul class="treeview-menu">
+            <li><a href="/admin/orders"><i class="fa fa-edit"></i> View Past Orders</a></li>
+          </ul>
+        </li>
+                
+                
+                
         <li class="<?= $section == 'web' ? 'active' : ''; ?> treeview">
           <a href="#">
             <i class="fa fa-globe"></i> <span>Webpage Management</span>

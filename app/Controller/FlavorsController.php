@@ -34,7 +34,8 @@ App::uses('AppController', 'Controller');
           //  pr($uploadfile);
             if(move_uploaded_file($this->request->data['Flavor']['image_url']['tmp_name'], $uploadfile))
             {
-                    $this->request->data['Flavor']['image_url'] = $uploadfile;
+//                    $this->request->data['Product']['image_url'] = $uploadfile;
+            $this->request->data['Flavor']['image_url'] = "/files/uploads/" . basename($this->request->data['Flavor']['image_url']['name']);
             }
             else 
             {
@@ -68,7 +69,8 @@ App::uses('AppController', 'Controller');
           //  pr($uploadfile);
             if(move_uploaded_file($this->request->data['Flavor']['image_url']['tmp_name'], $uploadfile))
             {
-                    $this->request->data['Flavor']['image_url'] = $uploadfile;
+//                    $this->request->data['Product']['image_url'] = $uploadfile;
+            $this->request->data['Flavor']['image_url'] = "/files/uploads/" . basename($this->request->data['Flavor']['image_url']['name']);
             }
             else 
             {

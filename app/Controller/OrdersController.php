@@ -19,12 +19,10 @@ class OrdersController extends AppController{
 
      public function beforeFilter() {
         parent::beforeFilter();
-        // Allow users to register and logout.
-       // $this->Auth->allow('creator');
     }
     
     //For Products page of the site.
-    function index($id = null) {
+    function __index($id = null) {
             $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
            if(!isset($id))
                 $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
@@ -103,14 +101,51 @@ class OrdersController extends AppController{
                     }
                 }
                 
-                
-                
             endforeach;
         endforeach;
         $this->set('order', $prettyOrder);
         pr($prettyOrder);
          exit();
         
+    }
+    
+        public function admin_view($id) {
+        $order = $this->Order->findById($id);
+        //$this->loadModel('Product');
+        $this->loadModel('Flavor');
+        $this->loadModel('Option');
+        $prettyOrder = array();
+        $orderInfo = unserialize($order['Order']['data']);
+        foreach($orderInfo as $productId => $productData):
+            $prettyOrder[$productId] = array('Flavors' => array());
+            foreach($productData as $flavorId => $data):
+                $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
+                $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
+                $prettyOrder[$productId]['Flavors'][$flavorId]['data']['quantity'] = $data['quantity'];
+                
+                // break down the options if they exist, add add to data
+                if(isset($data['options']))
+                {
+                    foreach($data['options'] as $option)
+                    {
+                        // this is where you're doing that.
+                    }
+                }
+                
+            endforeach;
+        endforeach;
+        $this->set('order', $prettyOrder);
+//        pr($prettyOrder);
+//         exit();
+    }
+      
+    public function admin_index($id=null) {
+        $this->loadModel('User');
+         
+        $orders = $this->set('orders', $this->paginate()); 
+        
+        $users = $this->User->findById($orders['id']);
+        // for later use setting to current user:   'user_id' => $this->Auth->user('id')
     }
 
        public function isAuthorized($user) {
@@ -128,5 +163,21 @@ class OrdersController extends AppController{
         }
 
         return parent::isAuthorized($user);
+    }
+    
+    
+    public function admin_delete($id = null) {
+        // Prior to 2.5 use
+        // $this->request->onlyAllow('post');
+
+        
+		$this->Order->id = $id;
+		$user = $this->Order->read();
+		if ($this->Order->delete($id)){
+			$this->Flash->success(__('The order has been deleted.'));
+		} else {
+			$this->Flash-error(__('The order could not be deleted, please try again'));
+		}
+		return $this->redirect(array('action' => 'index'));
     }
 }

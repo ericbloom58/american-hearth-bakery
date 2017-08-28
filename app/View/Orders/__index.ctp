@@ -1,4 +1,4 @@
-
+<!-- not being used -->
 <style>
     .product-name {
         font-weight: bold;
