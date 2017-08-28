@@ -41,6 +41,13 @@ class Product extends AppModel {
                 'associationForeignKey' => 'option_id',
                 'unique' => true
             )
+//        'User' => array(
+//                'className' => 'User',
+//                'joinTable' => 'user_products',
+//                'foreignKey' => 'product_id',
+//                'associationForeignKey' => 'user_id',
+//                'unique' => true
+//            )
     );
     public $hasMany = array(
         'ProductSpecialOption'

@@ -23,7 +23,7 @@ The 1 at the end is the order id.
 		<tr>
 			<td><?php echo $order['Order']['id']; ?></td>
                         <td><?php echo $order['Order']['user_id']; ?></td>
-                        <td><?php echo $user['name'];?></td>
+                        <td><?php echo $order['User']['name'];?></td>
 			<td><?php echo $order['Order']['created'] == '0000-00-00 00:00:00' ? 'Never' : date('F j, Y g:i a', strtotime($order['Order']['created'])); ?></td>
 			<td>
 				<!--<a role="button" class="btn btn-primary" href="/admin/orders/edit/<?php echo $order['Order']['id']; ?>"><i class="fa fa-edit"></i> Edit</a>&nbsp;-->

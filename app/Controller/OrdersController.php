@@ -80,13 +80,14 @@ class OrdersController extends AppController{
     
     public function view($id) {
         $order = $this->Order->findById($id);
-        //$this->loadModel('Product');
+        $this->loadModel('Product');
         $this->loadModel('Flavor');
         $this->loadModel('Option');
         $prettyOrder = array();
         $orderInfo = unserialize($order['Order']['data']);
         foreach($orderInfo as $productId => $productData):
-            $prettyOrder[$productId] = array('Flavors' => array());
+            $prettyOrder[$productId] = array('Flavors' => array(), 'Product' => array());
+        $prettyOrder[$productId]['Product'] = $this->Product->findById($productId)['Product'];
             foreach($productData as $flavorId => $data):
                 $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
@@ -111,13 +112,20 @@ class OrdersController extends AppController{
     
         public function admin_view($id) {
         $order = $this->Order->findById($id);
-        //$this->loadModel('Product');
+        $this->loadModel('Product');
         $this->loadModel('Flavor');
         $this->loadModel('Option');
         $prettyOrder = array();
         $orderInfo = unserialize($order['Order']['data']);
+pr($orderInfo);
         foreach($orderInfo as $productId => $productData):
-            $prettyOrder[$productId] = array('Flavors' => array());
+            if($productId == 'dateneeded')
+                break;
+            $prettyOrder[$productId] = array('Flavors' => array(), 'Product' => array());
+            $prod = $this->Product->findById($productId);
+            if(!empty($prod))
+                $prettyOrder[$productId]['Product'] = $prod['Product'];
+           
             foreach($productData as $flavorId => $data):
                 $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);

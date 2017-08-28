@@ -44,8 +44,6 @@ class User extends AppModel {
             )
         )
     );
-    
-    
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
             $passwordHasher = new BlowfishPasswordHasher();
@@ -55,6 +53,15 @@ class User extends AppModel {
         }
         return true;
     }
+    
+    public $hasAndBelongsToMany = array(
+        'Product' => array(
+                'className' => 'Product',
+                'joinTable' => 'user_products',
+                'foreignKey' => 'user_id',
+                'associationForeignKey' => 'product_id',
+                'unique' => true
+            ));
     
     
 }

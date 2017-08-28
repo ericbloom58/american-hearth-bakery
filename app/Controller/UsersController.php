@@ -29,6 +29,7 @@ class UsersController extends AppController {
     }
 
     public function admin_logout() {
+        
         return $this->redirect($this->Auth->logout());
     }
 
@@ -46,6 +47,12 @@ class UsersController extends AppController {
     }
 
     public function admin_add() {
+        if($this->Auth->user('role') !== 'admin')
+        {
+            $this->redirect('/admin');
+            die();
+        }
+        pr($this->Auth->user());
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -90,7 +97,7 @@ class UsersController extends AppController {
 			$this->Flash-error(__('The user could not be deleted, please try again'));
 		}
 		return $this->redirect(array('action' => 'index'));
-        
+    
        /* $this->request->allowMethod('post');
 
         $this->User->id = $id;
@@ -105,5 +112,68 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
         */
     }
-
+    
+    public function admin_favorites(){
+        $this->User->recursive = 0;
+        $this->set('users', $this->paginate());
+    }
+    public function forceLogout()
+    {
+        $this->Auth->logout();
+        exit();
+    }
+    public function admin_view_favorites($userId = null){
+        
+        if(isset($userId) && $this->Auth->user('role') !== 'admin')
+            exit('You are not authorized to view this page');
+        
+        if(!isset($userId))
+            $userId = $this->Auth->user('id');
+        
+        $user = $this->User->findById($userId);
+       // pr($user);
+        $this->set('user', $user);
+        
+        pr($user['Product']);
+        
+        //For Viewing of data
+        $this->loadModel('Flavor');
+        $this->loadModel('Package');
+        $this->loadModel('Option');
+        $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
+        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
+        $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
+    }
+         
+    //Adds and Edits Favorites
+    public function admin_add_favorites($userId = null){
+        
+        
+        if ($this->request->is('post')) {
+            
+            $error = false;
+            $this->loadModel('UserProduct');
+            if(!isset($userId))
+                $userId = $this->Auth->user('id');
+            foreach($this->request->data['Product'] as $product)
+            {
+                $this->UserProduct->create();
+                
+                if(!$this->UserProduct->save(array('product_id' => $product, 'user_id' => $userId)))
+                        $error = true;
+            }
+             if (!$error) {
+                $this->Session->setFlash("Favorites have been successfully edited.", 'flash_success');
+                return $this->redirect('/admin/users/favorites');
+            }
+            else {
+                   $this->Session->setFlash("One or more errors occurred. Please try again.", 'flash_error');
+            }
+        }
+        if(isset($userId))
+            $this->set('userId', $userId);
+        $this->loadModel('Product');
+        $this->set('products', $this->Product->find('list', array('fields' => array('id', 'name'))));
+        
+    }
 }

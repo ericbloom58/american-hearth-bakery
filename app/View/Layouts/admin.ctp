@@ -247,7 +247,12 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <?php echo $this->element('admin_menu'); ?>
+      
+      <?php 
+      if($loggedUser['role'] === 'admin')
+        echo $this->element('admin_menu'); 
+      else
+          echo $this->element('customer_menu'); ?>
     </section>
     <!-- /.sidebar -->
   </aside>
