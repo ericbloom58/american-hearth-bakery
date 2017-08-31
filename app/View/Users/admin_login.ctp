@@ -1,3 +1,5 @@
+<?php //  $this->layout = 'simplelogin'; ?>
+
 
 <div class="users form">
 <?php echo $this->Flash->render('auth'); ?>

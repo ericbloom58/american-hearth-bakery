@@ -11,7 +11,7 @@ The 1 at the end is the order id.
 	<thead>
 		<tr>
 			<th>Order Number</th>
-                        <th>User</th>
+                        <!--<th>User</th>-->
                         <th>User Name</th>
 			<th>Created</th>
                         <!--<th>Delivery Date</th>-->
@@ -22,7 +22,7 @@ The 1 at the end is the order id.
 	<?php foreach ($orders as $order) { ?>
 		<tr>
 			<td><?php echo $order['Order']['id']; ?></td>
-                        <td><?php echo $order['Order']['user_id']; ?></td>
+                        <!--<td><?php echo $order['Order']['user_id']; ?></td>-->
                         <td><?php echo $order['User']['name'];?></td>
 			<td><?php echo $order['Order']['created'] == '0000-00-00 00:00:00' ? 'Never' : date('F j, Y g:i a', strtotime($order['Order']['created'])); ?></td>
 			<td>
@@ -35,7 +35,6 @@ The 1 at the end is the order id.
 	<?php } ?>
 	</tbody>
 </table>
-
 <?php else: ?>
 <p>There are no orders in your database.</p>
 <?php endif; ?>

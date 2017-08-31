@@ -29,8 +29,8 @@ class UsersController extends AppController {
     }
 
     public function admin_logout() {
-        
-        return $this->redirect($this->Auth->logout());
+        $this->Auth->logout();
+        return $this->redirect('/admin');
     }
 
     public function admin_index() {
@@ -52,7 +52,7 @@ class UsersController extends AppController {
             $this->redirect('/admin');
             die();
         }
-        pr($this->Auth->user());
+        //pr($this->Auth->user());
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -134,7 +134,7 @@ class UsersController extends AppController {
        // pr($user);
         $this->set('user', $user);
         
-        pr($user['Product']);
+        //pr($user['Product']);
         
         //For Viewing of data
         $this->loadModel('Flavor');

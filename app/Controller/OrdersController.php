@@ -117,7 +117,7 @@ class OrdersController extends AppController{
         $this->loadModel('Option');
         $prettyOrder = array();
         $orderInfo = unserialize($order['Order']['data']);
-pr($orderInfo);
+        //pr($orderInfo);
         foreach($orderInfo as $productId => $productData):
             if($productId == 'dateneeded')
                 break;
