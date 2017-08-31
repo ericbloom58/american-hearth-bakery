@@ -38,15 +38,15 @@
 </div>
     <form action="/admin/users/login" method="post">
       <div class="form-group has-feedback">
-        <input type="text" name="data[username]" class="form-control" placeholder="Username" autofocus>
+        <input type="text" name="data[User][username]" class="form-control" placeholder="Username" autofocus>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="data[password]" class="form-control" placeholder="Password">
+        <input type="password" name="data[User][password]" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-<!--      <div class="row">
-        <div class="col-xs-8">
+     <div class="row">
+  <!--       <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
               <input type="checkbox" value="remember-me"> Remember Me
@@ -54,12 +54,12 @@
           </div>
         </div>
 	
-         /.col 
-        <div class="col-xs-4">
+         -->
+        <div class="col-xs-8">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
-         /.col 
-      </div>-->
+         
+      </div>
     </form>
 
 <!--    <div class="social-auth-links text-center">

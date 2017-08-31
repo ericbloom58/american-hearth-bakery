@@ -74,10 +74,12 @@ class ProductsController extends AppController {
         $this->loadModel('Package');
         $this->loadModel('Category');
         $this->loadModel('Option');
+        $this->loadModel('Quantity');
         $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
         $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
         $this->set('categories', $this->Category->find('list', array('fields' => array('id', 'name'))));
         $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
+        $this->set('quantitys', $this->Quantity->find('list', array('fields' => array('id', 'name'))));
         
         $directories = glob('files/galleries/*' , GLOB_ONLYDIR);
         $galleries = array(null => '{none}');
@@ -133,10 +135,12 @@ class ProductsController extends AppController {
         $this->loadModel('Package');
         $this->loadModel('Category');
         $this->loadModel('Option');
+        $this->loadModel('Quantity');
         $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
         $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
         $this->set('categories', $this->Category->find('list', array('fields' => array('id', 'name'))));
         $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
+        $this->set('quantitys', $this->Quantity->find('list', array('fields' => array('id', 'name'))));
    }
    
    public function admin_delete($id) {

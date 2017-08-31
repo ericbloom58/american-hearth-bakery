@@ -14,7 +14,7 @@ function closeCustomRoxy2(){
         height: 250px;
     }
     </style>
-    <?php $cats = array(); $flavs = array(); $pkgs = array(); $opts = array();
+    <?php $cats = array(); $flavs = array(); $pkgs = array(); $opts = array(); $qts = array();
     foreach($this->data['Category'] as $c)
     {
         $cats[] = $c['id'];
@@ -30,6 +30,10 @@ function closeCustomRoxy2(){
      foreach($this->data['Option'] as $c)
     {
         $opts[] = $c['id'];
+    }
+    foreach($this->data['Quantity'] as $c)
+    {
+        $qts[] = $c['id'];
     }
     
    ?>
@@ -91,6 +95,20 @@ function closeCustomRoxy2(){
                     $selected = "";
                     if(in_array($i, $opts))
                             $selected = 'selected';
+                    ?>
+                <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Sell By Quantities</label>
+            <select multiple name='data[Quantity][]' class="input form-control">
+                <?php foreach($quantitys as $i => $c):
+                    $selected = "";
+                    if(in_array($i, $qts))
+                            $selected = 'selected';
+                    ?>
                     ?>
                 <option <?= $selected; ?> value='<?= $i ?>'><?= $c ?></option>
                 <?php

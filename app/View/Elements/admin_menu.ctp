@@ -54,6 +54,10 @@
           <ul class="treeview-menu">
             <li><a href="/admin/options"><i class="fa fa-edit"></i> View/Edit Options</a></li>
           </ul>
+            <!--This is commented out so users do not mess with the sell by quantities.-->
+          <!--<ul class="treeview-menu">
+            <li><a href="/admin/quantitys"><i class="fa fa-edit"></i> View/Edit Sell By Quantities</a></li>
+          </ul>-->
         </li>    
             
             

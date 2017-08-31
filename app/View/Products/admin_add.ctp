@@ -65,6 +65,16 @@ function closeCustomRoxy2(){
                 endforeach; ?>
             </select>
         </div>
+        <div class="col-md-4">
+            <label>Sell By Quantities</label>
+            <select multiple name='data[Quantity][]' class="input form-control">
+                <?php foreach($quantityss as $i => $c):
+                    ?>
+                <option value='<?= $i ?>'><?= $c ?></option>
+                <?php
+                endforeach; ?>
+            </select>
+        </div>
     </div>
 
 

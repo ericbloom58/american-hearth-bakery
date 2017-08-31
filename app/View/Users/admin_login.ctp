@@ -1,7 +1,7 @@
-<?php //  $this->layout = 'simplelogin'; ?>
+<?php $this->layout = 'simplelogin'; ?>
 
 
-<div class="users form">
+<!--<div class="users form">
 <?php echo $this->Flash->render('auth'); ?>
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
@@ -13,4 +13,4 @@
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Login')); ?>
-</div>
+</div>-->

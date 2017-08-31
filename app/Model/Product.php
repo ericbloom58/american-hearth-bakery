@@ -40,6 +40,13 @@ class Product extends AppModel {
                 'foreignKey' => 'product_id',
                 'associationForeignKey' => 'option_id',
                 'unique' => true
+            ),
+        'Quantity' => array(
+                'className' => 'Quantity',
+                'joinTable' => 'product_quantitys',
+                'foreignKey' => 'product_id',
+                'associationForeignKey' => 'quantity_id',
+                'unique' => true
             )
 //        'User' => array(
 //                'className' => 'User',
