@@ -104,6 +104,13 @@
                    </section>
                 </div>
             </div>
+            <section class="breadcrumb-wrapper">
+                <div class="container" style='margin-bottom: 100px;'>                         
+                            <h3 class='page-title'>Please input the date you would like your order to arrive.</h3>
+                            <input name='data[Order][dateneeded]' type="date">
+                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
+                </div>
+            </section>
 
 </form>            
             <!--Stuff for old table options header-->
