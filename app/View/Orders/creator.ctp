@@ -27,7 +27,7 @@
 <!-- breadcrumb div Starts here -->
             <section class="breadcrumb-wrapper">
                 <div class="container">                         
-                            <h3 class='page-title'>Please input the date you would like your order to arrive.</h3>
+                            <h3 class='page-title'>Please input the date you would like your order to arrive. </h3>
                             <input name='data[Order][dateneeded]' type="date">
                             <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
                 </div>
@@ -77,11 +77,11 @@
                                                             </td>
                                                             <td>
                                                                 <select name="data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]">
-                                                                    <?php if($p['Quantity']['id'] === 1) 
+                                                                    <?php if($p['Quantity'][0]['id'] === "1") 
                                                                         {echo $this->element('quantitiesindividuals');}
-                                                                    else if($p['Quantity']['id'] === 2) 
+                                                                    else if($p['Quantity'][0]['id'] === "2") 
                                                                         {echo $this->element('quantitiesdozen');}
-                                                                    else if ($p['Quantity']['id'] === 3) 
+                                                                    else if ($p['Quantity'][0]['id'] === "3") 
                                                                         {echo $this->element('quantitieshalf_dozen');} 
                                                                     else 
                                                                         {echo $this->element('quantitiesindividuals');} 
