@@ -8,9 +8,9 @@
 			<th> Product Name </th>
                         <th> Flavor </th>
                         <!--<th> Packaging </th>-->
-                        <th> Option </th>
                         <th> Options </th>
                         <th> Quantity </th>
+                        <th> Remove </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,8 +41,20 @@
                                 endforeach; ?>
                             </select>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                                                                <select name="data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]">
+                                                                    <?php if($p['Quantity'][0]['id'] === "1") 
+                                                                        {echo $this->element('quantitiesindividuals');}
+                                                                    else if($p['Quantity'][0]['id'] === "2") 
+                                                                        {echo $this->element('quantitiesdozen');}
+                                                                    else if ($p['Quantity'][0]['id'] === "3") 
+                                                                        {echo $this->element('quantitieshalf_dozen');} 
+                                                                    else 
+                                                                        {echo $this->element('quantitiesindividuals');} 
+                                                                        ?> 
+                                                                </select>
+                        </td>
+                        <td><a class="btn btn-danger" href="/admin/users/favorites_delete/<?= $user['Product'][0]['id']; ?>"><i class='fa fa-remove'></i> Delete</a></td>
 		</tr>
 	<?php } ?>
 	</tbody>
@@ -53,5 +65,5 @@
 <p>There are no favorites in your database.</p>
 <?php endif; ?>
 
-<a role="button" href="/admin/users/add_favorites" class="btn btn-primary small"><i class="fa fa-plus"></i> Add Favorites </a>
+<a role="button" href="/admin/users/add_favorites/<?php echo $user['User']['id']; ?>" class="btn btn-primary small"><i class="fa fa-plus"></i> Add Favorites </a>
 <a role="button" href="#" class="btn btn-primary small">Place Order</a>

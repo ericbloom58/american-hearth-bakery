@@ -134,12 +134,15 @@ class UsersController extends AppController {
        // pr($user);
         $this->set('user', $user);
         
-        //pr($user['Product']);
+//        pr($user['Product']);
+        
         
         //For Viewing of data
+        $this->loadModel('Product');
         $this->loadModel('Flavor');
         $this->loadModel('Package');
         $this->loadModel('Option');
+        $this->set('products', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
         $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
         $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
         $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
@@ -163,7 +166,7 @@ class UsersController extends AppController {
                         $error = true;
             }
              if (!$error) {
-                $this->Session->setFlash("Favorites have been successfully edited.", 'flash_success');
+                $this->Session->setFlash("Favorites have been successfully added.", 'flash_success');
                 return $this->redirect('/admin/users/favorites');
             }
             else {
@@ -176,4 +179,78 @@ class UsersController extends AppController {
         $this->set('products', $this->Product->find('list', array('fields' => array('id', 'name'))));
         
     }
+    
+        public function admin_favorites_delete($userId = null) {
+        // Prior to 2.5 use
+        // $this->request->onlyAllow('post');
+
+        
+//		$this->UserProduct->id = $id;
+//		$user = $this->UserProduct->read();
+//		if ($this->UserProduct->delete($id)){
+//			$this->Flash->success(__('The user has been deleted.'));
+//		} else {
+//			$this->Flash-error(__('The user could not be deleted, please try again'));
+//		}
+//		return $this->redirect(array('action' => 'index'));
+                
+            $this->loadModel('UserProduct');
+                if(!isset($userId))
+                    $userId = $this->Auth->user('id');
+                
+                $user = $this->User->findById($userId);
+                
+                $this->set('user', $user);
+                
+                if ($this->User->delete($user['Product'])) {
+                    $this->Flash->success(
+                        __('The favorite has been deleted')
+                    );
+                } else {
+                    $this->Flash->error(
+                        __('The favorite could not be deleted.')
+                    );
+                }
+        }
+    
+    /*
+    public function admin_edit_favorites($userId = null){
+        
+        if ($this->request->is('post')) {
+            
+            $error = false;
+            $this->loadModel('UserProduct');
+            if(!isset($userId))
+                $userId = $this->Auth->user('id');
+            foreach($this->request->data['Product'] as $product)
+            {
+                $this->UserProduct->create();
+                
+                if(!$this->UserProduct->save(array('product_id' => $product, 'user_id' => $userId)))
+                        $error = true;
+            }
+             if (!$error) {
+                $this->Session->setFlash("Favorites have been successfully edited.", 'flash_success');
+                return $this->redirect('/admin/users/favorites');
+            }
+            else {
+                   $this->Session->setFlash("One or more errors occurred. Please try again.", 'flash_error');
+            }
+        }
+        else{
+            if (!$userId) {
+                throw new NotFoundException(_('Invalid favorite'));
+            }
+        }
+        
+        $user = $this->User->findById($userId);
+        $this->set('user', $user);
+        //pr($user['Product']);
+        
+        if(isset($userId))
+            $this->set('userId', $userId);
+        $this->loadModel('Product');
+        $this->set('products', $this->Product->find('list', array('fields' => array('id', 'name'))));
+        
+    } */
 }

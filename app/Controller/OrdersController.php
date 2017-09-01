@@ -87,7 +87,9 @@ class OrdersController extends AppController{
         $orderInfo = unserialize($order['Order']['data']);
         foreach($orderInfo as $productId => $productData):
             $prettyOrder[$productId] = array('Flavors' => array(), 'Product' => array());
-        $prettyOrder[$productId]['Product'] = $this->Product->findById($productId)['Product'];
+            $prettyOrder[$productId]['Product'] = $this->Product->findById($productId)['Product'];
+//            $prettyOrder[$productId]['Product']['Option'] = $this->Product->findById($productId)['Product']['Option'];
+            $prettyOrder[$productId]['Product']['Option'] = $this->Option->find('all');
             foreach($productData as $flavorId => $data):
                 $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
@@ -98,6 +100,9 @@ class OrdersController extends AppController{
                 {
                     foreach($data['options'] as $option)
                     {
+                        
+//                        $prettyOrder[$productId]['Flavors'][$option] = array('Option' => array(), 'data' => array());
+//                        $prettyOrder[$productId]['Flavors'][$option]['Option'] = $this->Option->findById($option);
                         // this is where you're doing that.
                     }
                 }
@@ -105,6 +110,7 @@ class OrdersController extends AppController{
             endforeach;
         endforeach;
         $this->set('order', $prettyOrder);
+//        pr($order);
         pr($prettyOrder);
          exit();
         

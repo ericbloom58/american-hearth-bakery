@@ -9,7 +9,8 @@
 <!--			<th>Last Name</th>
                         <th>Type</th>-->
                         <th>View Favorites</th>
-			<th>Add/Edit Favorites</th>
+			<th>Add Favorites</th>
+<!--			<th>Edit Favorites</th>-->
 		</tr>
 	</thead>
 	<tbody>
@@ -19,8 +20,10 @@
                         <td>
                             <a role="button" class="btn btn-primary" href="/admin/users/view_favorites/<?php echo $user['User']['id']; ?>"><i class="fa fa-edit"></i> View Favorites</a>&nbsp;
                         </td>
-			<td> <a role="button" class="btn btn-primary" href="/admin/users/add_favorites/<?php echo $user['User']['id']; ?>"><i class="fa fa-edit"></i> Edit Favorites</a>&nbsp;
+			<td> <a role="button" class="btn btn-primary" href="/admin/users/add_favorites/<?php echo $user['User']['id']; ?>"><i class="fa fa-edit"></i> Add Favorites</a>&nbsp;
 			</td>
+<!--			<td> <a role="button" class="btn btn-primary" href="/admin/users/edit_favorites/<?php echo $user['User']['id']; ?>"><i class="fa fa-edit"></i> Edit Favorites</a>&nbsp;
+			</td>-->
 		</tr>
 	<?php } ?>
 	</tbody>

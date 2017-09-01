@@ -1,4 +1,4 @@
-<?php $this->set('title_for_layout', 'Add Favorites'); ?>
+<?php $this->set('title_for_layout', 'Edit Favorites'); ?>
 <?php $this->Html->script('/_/plugins/tinymce/tinymce.min.js', array('block' => 'scripts')); ?>
 
 <?php $this->start('scripts'); ?>
@@ -14,21 +14,19 @@ function closeCustomRoxy2(){
         height: 250px;
     }
 </style>
-<form method="post" action="/admin/users/add_favorites<?= isset($userId) ? "/" . $userId  : ""; ?>" enctype="multipart/form-data">
+<form method="post" action="/admin/users/edit_favorites<?= isset($userId) ? "/" . $userId  : ""; ?>" enctype="multipart/form-data">
     <div class='row form-group'>
         <div class="col-md-4">
             <label>Products</label>
             <select multiple name='data[Product][]' class="input form-control">
                 <?php foreach($products as $i => $c):
                     ?>
-                <option value='<?= $i ?>'><?= $c ?></option>
+                <option  value='<?= $i ?>'><?= $c ?></option>
                 <?php
                 endforeach; ?>
             </select>
         </div>
     </div>
-
-
 
 <?php // echo $this->Form->hidden('Product.id'); ?>
 <?php // echo $this->Form->hidden('Product.parent_id', array('value' => $parentId)); ?>
@@ -40,3 +38,4 @@ function closeCustomRoxy2(){
   <iframe src="/_/plugins/fileman/index.html?integration=custom&type=files&txtFieldId=ProductSidebarImage" style="width:100%;height:100%" frameborder="0">
   </iframe>
 </div>
+
