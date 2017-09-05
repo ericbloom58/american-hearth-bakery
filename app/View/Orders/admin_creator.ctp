@@ -20,22 +20,33 @@
     .container{
         width: 80%;
     }
+    
+    .block-title, .block-title-bor { clear:both; font-size:30px; }
+	.block-title-bor { float:left; width:100%; padding-bottom:6px; }
+	.block-title, .block-title.aligncenter, .block-title-bor { margin-bottom:43px; }
+	.block-title.aligncenter { text-align:center; }
+	h3.block-title { font-size:24px; }
+        
+    /*----*****---- << Tables >> ----*****----*/
+    table{ border-collapse:separate; border-spacing:0; margin-bottom:20px; width:100%; clear:both; border:2px solid #b6b4b4; border-bottom:2px; border-right:2px;  }
+    th{ color:#000000; border-right:2px solid #e4e4e4; padding:17px 15px; font-size:16px; line-height:normal; font-weight:600; text-transform:capitalize; text-align:center; }
+    td{ border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; font-size:14px; line-height:normal; text-align:center; padding:13px 15px; }
+	
 </style>
-<form id='orderForm' method='post' action='/orders/creator'>
+<form id='orderForm' method='post' action='/admin/orders/creator'>
 
 
 <!-- breadcrumb div Starts here -->
-            <section class="breadcrumb-wrapper">
                 <div class="container">                         
                             <h3 class='page-title'>Please input the date you would like your order to arrive. </h3>
                             <input name='data[Order][dateneeded]' type="date">
                             <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
                 </div>
-            </section>
             <!-- breadcrumb div Ends here -->
             <div class="main-container">
                 <div class="container">
-                   <section id="primary" class="content-full-width">
+                   <!--<section id="primary" class="content-full-width">-->
+                    <section id=primary" class="col-md-12 col-xs-12">
                     <?php foreach(array_reverse($products) as $category): ?>
                     <?php // foreach($products as $category): ?>
                         <h3 class="block-title"><?= $category['Category']['name']; ?></h3>
@@ -45,7 +56,8 @@
 
                         <?php $counter = 0; foreach($category['Product'] as $p) { if($counter > 3) { $counter = 0; } $counter++; $first=""; if(($counter % 3 === 0) || ($counter === 0))  {
                             /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; }; ?>
-                        <div class="column dt-sc-one-fourth first">
+                        <!--<div class="column dt-sc-one-fourth first">-->
+                        <div class="col-md-4 col-xs-4">
 <!--                                <div class='product-name'>
                                     <?= $p['name']; ?> <div class="product-description"><em><?= $p['description']; ?></em></div>
                                 </div>
@@ -104,14 +116,6 @@
                    </section>
                 </div>
             </div>
-<!--            <section class="breadcrumb-wrapper">
-                <div class="container" style='margin-bottom: 100px;'>                         
-                            <h3 class='page-title'>Please input the date you would like your order to arrive.</h3>
-                            <input name='data[Order][dateneeded]' type="date">
-                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
-                </div>
-            </section>-->
-
 </form>            
             <!--Stuff for old table options header-->
                 <?php /*if(!empty($p['Option'])): ?><th> Options </th><?php endif;*/?>

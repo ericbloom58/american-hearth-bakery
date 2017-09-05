@@ -1,6 +1,7 @@
 <?php $this->set('title_for_layout', 'View Favorites'); ?>
 
 
+<form id='orderForm' method='post' action='/admin/orders/creator'>
 <?php if (!empty($user)): ?>
 <table class="table table-striped table-bordered table-hover dataTable" id="users-table">
 	<thead>
@@ -64,6 +65,9 @@
 <?php else: ?>
 <p>There are no favorites in your database.</p>
 <?php endif; ?>
+</form>
 
-<a role="button" href="/admin/users/add_favorites/<?php echo $user['User']['id']; ?>" class="btn btn-primary small"><i class="fa fa-plus"></i> Add Favorites </a>
-<a role="button" href="#" class="btn btn-primary small">Place Order</a>
+<a role="button" href="/admin/users/add_favorites/<?php echo $user['User']['id']; ?>" class="btn btn-primary small"><i class="fa fa-plus"></i> Add Favorites </a>                     
+                            <h3 class='page-title'>Please input the date you would like your order to arrive.</h3>
+                            <input name='data[Order][dateneeded]' type="date">
+                            <input class="dt-sc-button small blue" type='submit' value='Re-Order'/>

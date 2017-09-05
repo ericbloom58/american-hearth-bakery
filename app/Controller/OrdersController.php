@@ -77,6 +77,46 @@ class OrdersController extends AppController{
 //          echo pr($products, true); exit();
     }
     
+        function admin_creator($id = null) {
+            if(!empty($this->request->data))
+            {
+                $orders = $this->request->data['Order'];
+                foreach($orders as $i => $product):
+                    foreach($product as $j => $flavor):
+                        if(empty($flavor['quantity']))
+                            unset($orders[$i][$j]);
+                    endforeach;
+                    if(empty($orders[$i]))
+                        unset($orders[$i]);
+                endforeach;
+                $this->loadModel('Order');
+                $this->Order->create();
+                $o = serialize($orders);
+                $newOrder = array('data' => $o, 'user_id' => $this->Auth->user('id'));
+              
+                if($this->Order->save($newOrder)) {
+                $this->Session->setFlash('Your order has been saved!');
+                }
+                else
+                {
+                     $this->Session->setFlash('A saving error occurred!');
+                   
+                }
+            }
+            $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
+           if(!isset($id))
+           {
+                $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
+           }
+            else
+            {
+                $products = $this->Product->findById($id, array('recursive' => 2));
+            }
+            
+            $this->set('products', $products);
+        
+//          echo pr($products, true); exit();
+    } 
     
     public function view($id) {
         $order = $this->Order->findById($id);
@@ -90,6 +130,7 @@ class OrdersController extends AppController{
             $prettyOrder[$productId]['Product'] = $this->Product->findById($productId)['Product'];
 //            $prettyOrder[$productId]['Product']['Option'] = $this->Product->findById($productId)['Product']['Option'];
             $prettyOrder[$productId]['Product']['Option'] = $this->Option->find('all');
+            $prettyOrder[$productId]['Product']['dateneeded'] = $data['dateneeded'];
             foreach($productData as $flavorId => $data):
                 $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
@@ -110,9 +151,9 @@ class OrdersController extends AppController{
             endforeach;
         endforeach;
         $this->set('order', $prettyOrder);
-//        pr($order);
-        pr($prettyOrder);
-         exit();
+        pr($order);
+//        pr($prettyOrder);
+//         exit();
         
     }
     
@@ -123,7 +164,7 @@ class OrdersController extends AppController{
         $this->loadModel('Option');
         $prettyOrder = array();
         $orderInfo = unserialize($order['Order']['data']);
-        //pr($orderInfo);
+//        pr($orderInfo);
         foreach($orderInfo as $productId => $productData):
             if($productId == 'dateneeded')
                 break;
@@ -150,7 +191,7 @@ class OrdersController extends AppController{
         endforeach;
         $this->set('order', $prettyOrder);
 //        pr($prettyOrder);
-//         exit();
+//         exit()
     }
       
     public function admin_index($id=null) {

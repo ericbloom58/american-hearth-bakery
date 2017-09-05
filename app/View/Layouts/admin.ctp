@@ -283,11 +283,11 @@
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
+<!--    <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.3
     </div>
     <strong>Copyright &copy; 2016 <a href="http://net2sky.com">Net2Sky, LLC</a>.</strong> All rights
-    reserved.
+    reserved.-->
   </footer>
 
 <div id="dialog" style="display: none">

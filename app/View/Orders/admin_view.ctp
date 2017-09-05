@@ -1,6 +1,7 @@
 <?php $this->set('title_for_layout', 'View Orders'); ?>
 
 
+<form id='orderForm' method='post' action='/admin/orders/creator'>
 <?php if (!empty($order)): ?>
 <table class="table table-striped table-bordered table-hover dataTable" id="users-table">
 	<thead>
@@ -30,4 +31,9 @@
 <p>There are no orders in your database.</p>
 <?php endif; ?>
 
-<a role="button" href="#" class="btn btn-primary small"><i class=""></i> Re-Order </a>
+                <div class="container" style='margin-bottom: 100px;'>                         
+                            <h3 class='page-title'>Please input the date you would like your order to arrive.</h3>
+                            <input name='data[Order][dateneeded]' type="date">
+                            <input class="dt-sc-button small blue" type='submit' value='Re-Order'/>
+                </div>
+</form> 
