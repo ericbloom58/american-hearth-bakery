@@ -81,14 +81,35 @@ class OrdersController extends AppController{
             if(!empty($this->request->data))
             {
                 $orders = $this->request->data['Order'];
+            //    pr($orders); exit();
                 foreach($orders as $i => $product):
+                   
+                    if($i !== 'dateneeded'):
+                        $options = array();
                     foreach($product as $j => $flavor):
+                        
+                        if($j === 'options')
+                        {
+                            $options = $flavor;
+                            unset($orders[$i][$j]);
+                        }
+                        else
+                        {
                         if(empty($flavor['quantity']))
                             unset($orders[$i][$j]);
+                        else
+                        {
+                            if(!empty($options))
+                                $orders[$i][$j]['options'] = $options;
+                        }
+                        }
                     endforeach;
+                    endif;
                     if(empty($orders[$i]))
                         unset($orders[$i]);
                 endforeach;
+             //   pr($orders);
+            //    exit();
                 $this->loadModel('Order');
                 $this->Order->create();
                 $o = serialize($orders);
@@ -130,7 +151,7 @@ class OrdersController extends AppController{
             $prettyOrder[$productId]['Product'] = $this->Product->findById($productId)['Product'];
 //            $prettyOrder[$productId]['Product']['Option'] = $this->Product->findById($productId)['Product']['Option'];
             $prettyOrder[$productId]['Product']['Option'] = $this->Option->find('all');
-            $prettyOrder[$productId]['Product']['dateneeded'] = $data['dateneeded'];
+//            $prettyOrder[$productId]['Product']['dateneeded'] = $data['dateneeded'];
             foreach($productData as $flavorId => $data):
                 $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
@@ -151,7 +172,7 @@ class OrdersController extends AppController{
             endforeach;
         endforeach;
         $this->set('order', $prettyOrder);
-        pr($order);
+//        pr($orderInfo);
 //        pr($prettyOrder);
 //         exit();
         
@@ -164,7 +185,6 @@ class OrdersController extends AppController{
         $this->loadModel('Option');
         $prettyOrder = array();
         $orderInfo = unserialize($order['Order']['data']);
-//        pr($orderInfo);
         foreach($orderInfo as $productId => $productData):
             if($productId == 'dateneeded')
                 break;
@@ -173,34 +193,58 @@ class OrdersController extends AppController{
             if(!empty($prod))
                 $prettyOrder[$productId]['Product'] = $prod['Product'];
            
+           
+            
             foreach($productData as $flavorId => $data):
-                $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array());
+                $prettyOrder[$productId]['Flavors'][$flavorId] = array('Flavor' => array(), 'data' => array(), 'Option' => array());
                 $prettyOrder[$productId]['Flavors'][$flavorId]['Flavor'] = $this->Flavor->findById($flavorId);
                 $prettyOrder[$productId]['Flavors'][$flavorId]['data']['quantity'] = $data['quantity'];
                 
                 // break down the options if they exist, add add to data
-                if(isset($data['options']))
+//                if(isset($data['options']))
+//                {
+//                    foreach($data['options'] as $option)
+//                    {
+//                        // this is where you're doing that.
+//                    }
+//                }
+                 if(isset($data['options']))
                 {
                     foreach($data['options'] as $option)
                     {
-                        // this is where you're doing that.
+                        $prettyOrder[$productId]['Flavors'][$flavorId]['Option'][] = $this->Option->findById($option);// this is where you're doing that.
+//                        $prettyOrder[$option] = array('Options' => array());
                     }
                 }
                 
             endforeach;
         endforeach;
         $this->set('order', $prettyOrder);
+        $this->set('prettydate', $orderInfo['dateneeded']);
+        
+        
+//        pr($orderInfo);
 //        pr($prettyOrder);
-//         exit()
+//         exit();
     }
       
     public function admin_index($id=null) {
         $this->loadModel('User');
-         
-        $orders = $this->set('orders', $this->paginate()); 
+        $role = $this->Auth->user('role');
+        $currentId = $this->Auth->user('id');
         
-        $users = $this->User->findById($orders['id']);
-        // for later use setting to current user:   'user_id' => $this->Auth->user('id')
+        if($role === 'admin')
+        {
+            if($id === null)
+                $this->set('orders', $this->Order->find('all'));
+            else
+                $this->set('orders', $this->Order->find('all', array('conditions' => array('Order.user_id' => $id))));
+        }
+        else
+            $orders = $this->set('orders', $this->Order->find('all', array('conditions' => array('Order.user_id' => $currentId))));
+        
+      
+      //  $users = $this->User->findById($orders['id']);
     }
 
        public function isAuthorized($user) {

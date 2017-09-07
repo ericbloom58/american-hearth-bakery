@@ -14,7 +14,6 @@ The 1 at the end is the order id.
                         <!--<th>User</th>-->
                         <th>User Name</th>
 			<th>Created</th>
-                        <th>Delivery Date</th>
 			<th>Options</th>
 		</tr>
 	</thead>
@@ -25,7 +24,6 @@ The 1 at the end is the order id.
                         <!--<td><?php echo $order['Order']['user_id']; ?></td>-->
                         <td><?php echo $order['User']['name'];?></td>
 			<td><?php echo $order['Order']['created'] == '0000-00-00 00:00:00' ? 'Never' : date('F j, Y g:i a', strtotime($order['Order']['created'])); ?></td>
-                        <td></td>
                         <td>
 				<!--<a role="button" class="btn btn-primary" href="/admin/orders/edit/<?php echo $order['Order']['id']; ?>"><i class="fa fa-edit"></i> Edit</a>&nbsp;-->
                                <a role="button" class="btn btn-primary" href="/admin/orders/view/<?php echo $order['Order']['id']; ?>"><i class="fa fa-edit"></i> View</a>&nbsp;

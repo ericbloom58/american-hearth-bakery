@@ -34,6 +34,9 @@ class ProductsController extends AppController {
         
     public function admin_index() {
         $this->set('products', $this->Product->find('all'));
+        
+//        $products = $this->Product->find('all');
+//        echo pr($products, true); exit();
     }
 
     public function view($id) {

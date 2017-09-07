@@ -13,6 +13,9 @@
           <ul class="treeview-menu">
             <li><a href="/admin/orders"><i class="fa fa-edit"></i> View Past Orders</a></li>
           </ul>
+          <ul class="treeview-menu">
+            <li><a href="/admin/orders/creator"><i class="fa fa-edit"></i> Create an Order</a></li>
+          </ul>
         </li>
             
         <li class="<?= $section == 'users' ? 'active' : ''; ?> treeview">

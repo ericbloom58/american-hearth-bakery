@@ -29,7 +29,7 @@
         
     /*----*****---- << Tables >> ----*****----*/
     table{ border-collapse:separate; border-spacing:0; margin-bottom:20px; width:100%; clear:both; border:2px solid #b6b4b4; border-bottom:2px; border-right:2px;  }
-    th{ color:#000000; border-right:2px solid #e4e4e4; padding:17px 15px; font-size:16px; line-height:normal; font-weight:600; text-transform:capitalize; text-align:center; }
+    th{ color:#000000; border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; padding:17px 15px; font-size:16px; line-height:normal; font-weight:600; text-transform:capitalize; text-align:center; }
     td{ border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; font-size:14px; line-height:normal; text-align:center; padding:13px 15px; }
 	
 </style>
@@ -37,11 +37,6 @@
 
 
 <!-- breadcrumb div Starts here -->
-                <div class="container">                         
-                            <h3 class='page-title'>Please input the date you would like your order to arrive. </h3>
-                            <input name='data[Order][dateneeded]' type="date">
-                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
-                </div>
             <!-- breadcrumb div Ends here -->
             <div class="main-container">
                 <div class="container">
@@ -57,7 +52,7 @@
                         <?php $counter = 0; foreach($category['Product'] as $p) { if($counter > 3) { $counter = 0; } $counter++; $first=""; if(($counter % 3 === 0) || ($counter === 0))  {
                             /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; }; ?>
                         <!--<div class="column dt-sc-one-fourth first">-->
-                        <div class="col-md-4 col-xs-4">
+                        <div class="col-md-5 col-xs-5">
 <!--                                <div class='product-name'>
                                     <?= $p['name']; ?> <div class="product-description"><em><?= $p['description']; ?></em></div>
                                 </div>
@@ -65,11 +60,11 @@
                                                 <ul class="dt-sc-fancy-list  blue  decimal">
                                                     <table class="order-table">
                                                         <tr>
-                                                            <th><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div> </th>
+                                                            <th colspan="2"><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div></th>
                                                             <?php if(!empty($p['Option'])): ?><th> Options </th>
                                                             <th>
                                                                     <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
-                                                                <select multiple name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][options][]'>
+                                                                <select multiple name='data[Order][<?= $p['id']; ?>][options][]'>
                                                                 <?php foreach($p['Option'] as $option): ?>
                                                                     <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
                                                                 <?php endforeach; ?> 
@@ -95,6 +90,8 @@
                                                                         {echo $this->element('quantitiesdozen');}
                                                                     else if ($p['Quantity'][0]['id'] === "3") 
                                                                         {echo $this->element('quantitieshalf_dozen');} 
+                                                                    else if ($p['Quantity'][0]['id'] === "4") 
+                                                                        {echo $this->element('quantitieshalf_case');} 
                                                                     else 
                                                                         {echo $this->element('quantitiesindividuals');} 
                                                                         ?> 
@@ -116,6 +113,20 @@
                    </section>
                 </div>
             </div>
+                <div class="container" style="
+                     width: 70%;
+                     padding: 10px 5%;
+                     display: table;
+                     margin: 0 auto;
+                     background: rgba(255,255,255,0.7);
+                     position: fixed;
+                     bottom: 5px;
+                     text-align: right;
+                     ">                         
+                            <h3 class='page-title'>Please input the date you would like your order to arrive. </h3>
+                            <input name='data[Order][dateneeded]' type="date">
+                            <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
+                </div>
 </form>            
             <!--Stuff for old table options header-->
                 <?php /*if(!empty($p['Option'])): ?><th> Options </th><?php endif;*/?>
@@ -161,3 +172,24 @@
     
 </script>
 <?php $this->end(); ?>
+
+
+
+
+
+<!--                                                        <tr>
+                                                            <th><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div></th>
+                                                            <?php /*if(empty($p['Option']))
+                                                                    {echo "<th></th>";}
+                                                                else {echo "<th> Options </th>
+                                                            <th>
+                                                                    <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
+                                                                <select multiple name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][options][]'>
+                                                                <?php foreach($p['Option'] as $option): ?>
+                                                                    <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
+                                                                <?php endforeach; ?> 
+                                                                </select>
+                                                                <?php endif;?>
+                                                            </th>";}
+                                                            */?>
+                                                        </tr>-->

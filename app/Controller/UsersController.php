@@ -33,17 +33,55 @@ class UsersController extends AppController {
         return $this->redirect('/admin');
     }
 
-    public function admin_index() {
-        $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+    public function admin_index($userId=null) {
+        
+        if(isset($userId) && $this->Auth->user('role') !== 'admin')
+            exit('You are not authorized to view this page');
+        
+        if(!isset($userId))
+            $userId = $this->Auth->user('id');
+        
+        if($this->Auth->user('role') === 'admin')
+            $user = $this->User->find('all');
+        else
+            $user = $this->User->find('all', array('conditions' => array('User.id' => $this->Auth->user('id'))));
+        
+        
+      //  $user = $this->User->findById($userId);
+        $this->set('users', $user);
+//       pr($user);
+        
+//        $this->User->recursive = 0;
+//        $this->set('users', $this->paginate());
+       
+       
+       /*     
+        if(isset($userId) && $this->Auth->user('role') !== 'admin')
+        {
+        $user = $this->User->findById($userId);
+        $this->set('users', $user);
+        pr($user);
+        }
+//            exit('You are not authorized to view this page');
+        
+        if(isset($userId) && $this->Auth->user('role') == 'admin')
+        {
+            $userId = $this->Auth->user('id');
+            $this->User->recursive = 0;
+            $this->set('users', $this->paginate());
+        }
+        */
     }
 
     public function admin_view($id = null) {
+        
+        
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
         $this->set('user', $this->User->findById($id));
+        
     }
 
     public function admin_add() {
@@ -132,20 +170,29 @@ class UsersController extends AppController {
         
         $user = $this->User->findById($userId);
        // pr($user);
-        $this->set('user', $user);
+       
         
-//        pr($user['Product']);
-        
-        
-        //For Viewing of data
-        $this->loadModel('Product');
+         $this->loadModel('Product');
         $this->loadModel('Flavor');
         $this->loadModel('Package');
         $this->loadModel('Option');
-        $this->set('products', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
-        $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
-        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
-        $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
+        
+      
+        foreach($user['Product'] as $index => $userProduct)
+        {
+            $user['Product'][$index]['ProductInfo'] = $this->Product->findById($userProduct['id']);
+            
+        }
+        
+        
+          pr($user['Product']);
+         $this->set('user', $user);
+        //For Viewing of data
+       
+//        $this->set('products', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
+//        $this->set('flavors', $this->Flavor->find('list', array('fields' => array('id', 'name'))));
+//        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
+//        $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
     }
          
     //Adds and Edits Favorites

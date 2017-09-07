@@ -16,6 +16,7 @@
                         <th>Categories</th>
                         <th>Packaging</th>
                         <th>Flavors</th>
+                        <th>Sell By</th>
 			<th>Options</th>
 		</tr>
 	</thead>
@@ -63,7 +64,7 @@
                             }
                             ?>
                         </td>
-			
+                        <td><?php echo $product['Quantity'][0]['name']; ?></td>
 			<td>
 				<a role="button" class="btn btn-primary" href="/admin/products/edit/<?php echo $product['Product']['id']; ?>"><i class="fa fa-edit"></i> Edit</a>&nbsp;
 				<a role="button" class="btn btn-danger delete-object" onclick='return confirm("Are you sure you want to delete \"<?php echo $product['Product']['name']; ?>?\" This action CANNOT be undone.")'

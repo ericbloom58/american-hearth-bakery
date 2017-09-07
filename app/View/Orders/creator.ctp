@@ -45,7 +45,7 @@
 
                         <?php $counter = 0; foreach($category['Product'] as $p) { if($counter > 3) { $counter = 0; } $counter++; $first=""; if(($counter % 3 === 0) || ($counter === 0))  {
                             /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; }; ?>
-                        <div class="column dt-sc-one-fourth first">
+                        <div class="column dt-sc-one-third first">
 <!--                                <div class='product-name'>
                                     <?= $p['name']; ?> <div class="product-description"><em><?= $p['description']; ?></em></div>
                                 </div>
@@ -53,7 +53,7 @@
                                                 <ul class="dt-sc-fancy-list  blue  decimal">
                                                     <table class="order-table">
                                                         <tr>
-                                                            <th><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div> </th>
+                                                            <th colspan="2"><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div> </th>
                                                             <?php if(!empty($p['Option'])): ?><th> Options </th>
                                                             <th>
                                                                     <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
@@ -82,7 +82,9 @@
                                                                     else if($p['Quantity'][0]['id'] === "2") 
                                                                         {echo $this->element('quantitiesdozen');}
                                                                     else if ($p['Quantity'][0]['id'] === "3") 
-                                                                        {echo $this->element('quantitieshalf_dozen');} 
+                                                                        {echo $this->element('quantitieshalf_dozens');} 
+                                                                    else if ($p['Quantity'][0]['id'] === "4") 
+                                                                        {echo $this->element('quantitieshalf_case');} 
                                                                     else 
                                                                         {echo $this->element('quantitiesindividuals');} 
                                                                         ?> 

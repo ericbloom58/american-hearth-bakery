@@ -218,10 +218,20 @@
  * To use database sessions, run the app/Config/Schema/sessions.php schema using
  * the cake shell command: cake schema create Sessions
  */
+        //Default Session Saver
 	Configure::write('Session', array(
 		'defaults' => 'php'
 	));
-
+        
+	//SelectEventGroup's
+//		Configure::write('Session', array(
+//		'defaults' => 'database',
+//            'timeout' => 8000,
+//            'cookieTimeout'=>8000,
+//            'checkAgent' => false,
+//            'autoRegenerate'=>false,
+//            'ini'=>array('max_execution_time' => 120)
+//	));
 /**
  * A random string used in security hashing methods.
  */

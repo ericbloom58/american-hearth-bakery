@@ -1,6 +1,5 @@
 <?php $this->set('title_for_layout', 'View Favorites'); ?>
 
-
 <form id='orderForm' method='post' action='/admin/orders/creator'>
 <?php if (!empty($user)): ?>
 <table class="table table-striped table-bordered table-hover dataTable" id="users-table">
@@ -19,10 +18,11 @@
 		<tr>
 			<td><?php echo $favorites['name']; ?></td>
                         <td>	
+                          
                             <select multiple name='data[Flavor][]' class="input form-control">
-                                <?php foreach($flavors as $i => $c):
+                                <?php foreach($favorites['ProductInfo']['Flavor'] as $c):
                                  ?>
-                                <option value='<?= $i ?>'><?= $c ?></option>
+                                <option value='<?= $c['id'] ?>'><?= $c['name'] ?></option>
                                 <?php
                                 endforeach; ?>
                             </select>
@@ -35,24 +35,27 @@
                         </td>-->
                         <td>
                             <select multiple name='data[Option][]' class="input form-control">
-                                <?php foreach($options as $i => $c):
+                                <?php foreach($favorites['ProductInfo']['Option'] as $c):
                                 ?>
-                                <option value='<?= $i ?>'><?= $c ?></option>
+                                <option value='<?= $c['id'] ?>'><?= $c['name'] ?></option>
                                 <?php
                                 endforeach; ?>
                             </select>
                         </td>
                         <td>
-                                                                <select name="data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]">
-                                                                    <?php if($p['Quantity'][0]['id'] === "1") 
+                                                                <select name="data[quantity][]">
+                                                                    <?php foreach($favorites['ProductInfo']['Quantity'] as $c): ?>
+                                                                    <?php if($c['id'] === "1") 
                                                                         {echo $this->element('quantitiesindividuals');}
-                                                                    else if($p['Quantity'][0]['id'] === "2") 
+                                                                    else if($c['id'] === "2") 
                                                                         {echo $this->element('quantitiesdozen');}
-                                                                    else if ($p['Quantity'][0]['id'] === "3") 
-                                                                        {echo $this->element('quantitieshalf_dozen');} 
+                                                                    else if ($c['id'] === "3") 
+                                                                        {echo $this->element('quantitieshalf_dozens');} 
+                                                                    else if ($c['id'] === "4") 
+                                                                        {echo $this->element('quantitieshalf_case');} 
                                                                     else 
-                                                                        {echo $this->element('quantitiesindividuals');} 
-                                                                        ?> 
+                                                                        {echo $this->element('quantitiesindividuals');} ?>
+                                                                    <?php endforeach; ?> 
                                                                 </select>
                         </td>
                         <td><a class="btn btn-danger" href="/admin/users/favorites_delete/<?= $user['Product'][0]['id']; ?>"><i class='fa fa-remove'></i> Delete</a></td>

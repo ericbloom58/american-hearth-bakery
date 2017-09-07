@@ -22,6 +22,7 @@
 			<td><?php echo $user['User']['created'] == '0000-00-00 00:00:00' ? 'Never' : date('F j, Y g:i a', strtotime($user['User']['created'])); ?></td>
 			<td>
                                <a role="button" class="btn btn-primary" href="/admin/users/edit/<?php echo $user['User']['id']; ?>"><i class="fa fa-edit"></i> Edit</a>&nbsp;
+                               <a role="button" class="btn btn-warning" href="/admin/orders/index/<?php echo $user['User']['id']; ?>"><i class="fa fa-list"></i> Past Orders</a>&nbsp;
                                <a class="btn btn-danger" href="/admin/users/delete/<?= $user['User']['id']; ?>"><i class='fa fa-remove'></i> Delete</a> 
 			</td>
 		</tr>
