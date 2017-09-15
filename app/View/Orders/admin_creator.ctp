@@ -118,7 +118,7 @@
                      padding: 10px 5%;
                      display: table;
                      margin: 0 auto;
-                     background: rgba(255,255,255,0.7);
+                     background: #f4f4f4;
                      position: fixed;
                      bottom: 5px;
                      text-align: right;
