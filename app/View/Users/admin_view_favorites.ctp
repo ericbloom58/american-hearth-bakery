@@ -143,7 +143,7 @@
                                                     </table>
                                                 </ul>
                         </div>
-                        <!-- End for each here?  -->
+                        <!-- End for each here?  --><!-- test so that git will take files -->
                     <?php endforeach; ?>
                    </div>
                 </div>
