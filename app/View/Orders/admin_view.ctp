@@ -1,6 +1,5 @@
 <?php $this->set('title_for_layout', 'View Order'); ?>
 
-
 <form id='orderForm' method='post' action='/admin/orders/creator'>
 <?php if (!empty($order)): ?>
 <h3> Delivery Date : <?php echo $prettydate; ?> </h3>                

@@ -3,7 +3,6 @@
         font-weight: bold;
         font-size: 115%;
         color: #7f3517;
-        text-shadow: 3px 3px 3px #aaa;
     }
     .product-description{
         font-weight:normal;
@@ -18,7 +17,7 @@
     .block-title{ margin-bottom: 0;}
     
     .container{
-        width: 80%;
+        width: 100%;
     }
     
     .block-title, .block-title-bor { clear:both; font-size:30px; }
@@ -28,42 +27,88 @@
 	h3.block-title { font-size:24px; }
         
     /*----*****---- << Tables >> ----*****----*/
-    table{ border-collapse:separate; border-spacing:0; margin-bottom:20px; width:100%; clear:both; border:2px solid #b6b4b4; border-bottom:2px; border-right:2px;  }
-    th{ color:#000000; border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; padding:17px 15px; font-size:16px; line-height:normal; font-weight:600; text-transform:capitalize; text-align:center; }
-    td{ border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; font-size:14px; line-height:normal; text-align:center; padding:13px 15px; }
+    table{ border-collapse:separate; border-spacing:0; margin-bottom:20px; width:100%; clear:both; border:2px solid #b6b4b4; border-bottom:2px; border-right:2px;}
+    th{ color:#000000; border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; padding:5px; font-size:14px; line-height:normal; font-weight:600; text-transform:capitalize; text-align:left; }
+    td{ border-right:2px solid #b6b4b4; border-bottom:2px solid #b6b4b4; font-size:14px; line-height:normal; text-align: left; padding:5px; }
+        .scrollbar {
+		width:12.6666666667%;
+		float: left;
+		margin-left: 3.999999999966667%;
 	
+    }
+    .test {
+    margin-left: -50px;
+    }
+     @media (min-width: 1025px and max-width: 1599px) {
+     .col-lg-3:nth-child(3n + 1) {
+        clear: both;
+     }
+    }
+     @media (min-width: 769x and max-width: 1024px) {
+     .col-md-4 {
+        clear: both;
+     }
+    }
+    
+     @media (max-width: 414px) {
+     .col-xs-12:nth-child(n + 1) {
+        clear: both;
+    }
+     }
+    
+    
+    
+    @media (min-width: 1600px) {
+                              
+    .col-xl-2 {
+		width:16.66666667%;
+		float: left;
+		    padding-right: 15px;
+    padding-left: 15px;
+    }
+    .col-xl-2:nth-child(6n + 1) {
+        clear: both;
+    }
+    }
+    
+   
+    /*@media only screen and (min-width: 200px)  and (max-width: 767px)  {
+    }*/
 </style>
 <form id='orderForm' method='post' action='/admin/orders/creator'>
-
-
 <!-- breadcrumb div Starts here -->
             <!-- breadcrumb div Ends here -->
             <div class="main-container">
                 <div class="container">
                    <!--<section id="primary" class="content-full-width">-->
-                    <section id=primary" class="col-md-12 col-xs-12">
+                    <div id=primary" class="col-md-12 col-xs-12">
                     <?php foreach(array_reverse($products) as $category): ?>
                     <?php // foreach($products as $category): ?>
                         <h3 class="block-title"><?= $category['Category']['name']; ?></h3>
                         <?php if(empty($category['Product'])): ?>
                         <p><em>--- None Listed ---</em></p>
                         <?php endif; ?>
-
-                        <?php $counter = 0; foreach($category['Product'] as $p) { if($counter > 3) { $counter = 0; } $counter++; $first=""; if(($counter % 3 === 0) || ($counter === 0))  {
-                            /*echo '<div class="dt-sc-hr-invisible"></div>';*/ $first="first"; }; ?>
+                        <div class="row">
+                        <?php $counter = 0; $counter2 = 0; foreach($category['Product'] as $p){ //if(($counter % 6 === 0)) { echo '</div><div class="col-md-12 col-xs-12">'; $counter = 0;  }; $counter++; $counter2++;  ?>
                         <!--<div class="column dt-sc-one-fourth first">-->
-                        <div class="col-md-5 col-xs-5">
-<!--                                <div class='product-name'>
+                        <!--<div class="scrollbar">  --> <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<!--                                
+							<div class='product-name'>
                                     <?= $p['name']; ?> <div class="product-description"><em><?= $p['description']; ?></em></div>
                                 </div>
-                            <br>-->
-                                                <ul class="dt-sc-fancy-list  blue  decimal">
+                            <br>
+							-->
+                                                <ul class="dt-sc-fancy-list  blue  decimal test">
                                                     <table class="order-table">
                                                         <tr>
+														<!-- <th colspan="2"> -->
                                                             <th colspan="2"><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div></th>
+															
+                                                        </tr>
+                                                        <tr>
                                                             <?php if(!empty($p['Option'])): ?><th> Options </th>
                                                             <th>
-                                                                    <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
+                                                                <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
                                                                 <select multiple name='data[Order][<?= $p['id']; ?>][options][]'>
                                                                 <?php foreach($p['Option'] as $option): ?>
                                                                     <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
@@ -80,10 +125,10 @@
                                                     <?php foreach($p['Flavor'] as $flavor): ?>
                                                         <tr>
                                                             <td> 
-                                                                 <?= $flavor['name']; ?>
+                                                                 <?= $flavor['name']; ?>     <em><?=$flavor['description']; ?></em>
                                                             </td>
                                                             <td>
-                                                                <select name="data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]">
+                                                                <select style="width:50px;" name="data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][quantity]">
                                                                     <?php if($p['Quantity'][0]['id'] === "1") 
                                                                         {echo $this->element('quantitiesindividuals');}
                                                                     else if($p['Quantity'][0]['id'] === "2") 
@@ -102,66 +147,33 @@
                                                         </tr>
                                                     <?php endforeach; ?>
                                                     </table>
-                                                  
                                                 </ul>
                         </div>
                         <!-- End for each here?  -->
                         
                         <?php } ?>
-                        <!--<div class="dt-sc-hr-invisible"></div>-->
+                        </div>
                     <?php endforeach; ?>
-                   </section>
+                   </div>
                 </div>
             </div>
                 <div class="container" style="
-                     width: 70%;
+                     width: 45%;
                      padding: 10px 5%;
                      display: table;
                      margin: 0 auto;
+                     margin-left: 20%;
                      background: #f4f4f4;
                      position: fixed;
                      bottom: 5px;
                      text-align: right;
+                     border: solid 2px;
                      ">                         
-                            <h3 class='page-title'>Please input the date you would like your order to arrive. </h3>
+                            <h3 class='page-title' style='margin-right:10%;'>Please input the date you would like your order to arrive. </h3>
                             <input name='data[Order][dateneeded]' type="date">
                             <input class="dt-sc-button small blue" type='submit' value='Place Order'/>
                 </div>
-</form>            
-            <!--Stuff for old table options header-->
-                <?php /*if(!empty($p['Option'])): ?><th> Options </th><?php endif;*/?>
-            
-            <!--Stuff for old table options row-->
-                <?php /*if(!empty($p['Option'])): ?>
-                                                            <td>
-                                                                    <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
-                                                                <select multiple name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][options][]'>
-                                                                <?php foreach($p['Option'] as $option): ?>
-                                                                    <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
-                                                                <?php endforeach; ?> 
-                                                                </select>
-                                                                <?php endif;?>
-                                                            </td>
-                                                            <?php endif; */?>
-            
-            
-            <!-- crap for hoverer -->
-<!--                <div class="col-md-6 col-xs-12">
-                        <div class="hoverer">
-                            <div class='picture-space'>
-                            <img src="/img/grandfather.PNG" class="img-responsive" style=" border: 5px solid #661919; " alt="">
-                            <span>
-                                <div class="video-container">
-                                    <div class='video-space'>
-                                    <iframe src="https://www.youtube.com/embed/By5dSOUJd_U" style=" border: 5px solid #661919; " height="100%" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </span>
-                            </div>
-                        </div>
-                    </div>-->
-
-
+</form>           
 <?php $this->start('scripts'); ?>
 <script>
     jQuery("#orderForm").submit(function(e) {
@@ -172,24 +184,3 @@
     
 </script>
 <?php $this->end(); ?>
-
-
-
-
-
-<!--                                                        <tr>
-                                                            <th><div class="product-name"><?= $p['name']; ?><div class="product-description"><em><?=$p['description']; ?></em></div></div></th>
-                                                            <?php /*if(empty($p['Option']))
-                                                                    {echo "<th></th>";}
-                                                                else {echo "<th> Options </th>
-                                                            <th>
-                                                                    <?php if(!(sizeof($p['Option']) === 1 && strtolower($p['Option'][0]['name']) === 'none')): ?>
-                                                                <select multiple name='data[Order][<?= $p['id']; ?>][<?= $flavor['id']; ?>][options][]'>
-                                                                <?php foreach($p['Option'] as $option): ?>
-                                                                    <option value='<?= $option['id']; ?>'> <?= $option['name']; ?> </option>
-                                                                <?php endforeach; ?> 
-                                                                </select>
-                                                                <?php endif;?>
-                                                            </th>";}
-                                                            */?>
-                                                        </tr>-->

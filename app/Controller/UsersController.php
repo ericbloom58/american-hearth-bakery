@@ -135,20 +135,6 @@ class UsersController extends AppController {
 			$this->Flash-error(__('The user could not be deleted, please try again'));
 		}
 		return $this->redirect(array('action' => 'index'));
-    
-       /* $this->request->allowMethod('post');
-
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        if ($this->User->delete()) {
-            $this->Flash->success(__('User deleted'));
-            return $this->redirect(array('action' => 'index'));
-        }
-        $this->Flash->error(__('User was not deleted'));
-        return $this->redirect(array('action' => 'index'));
-        */
     }
     
     public function admin_favorites(){
@@ -185,7 +171,7 @@ class UsersController extends AppController {
         }
         
         
-          pr($user['Product']);
+          //pr($user['Product']);
          $this->set('user', $user);
         //For Viewing of data
        
@@ -194,6 +180,68 @@ class UsersController extends AppController {
 //        $this->set('packages', $this->Package->find('list', array('fields' => array('id', 'name'))));
 //        $this->set('options', $this->Option->find('list', array('fields' => array('id', 'name'))));
     }
+    
+    function admin_favorder($id = null) {
+            if(!empty($this->request->data))
+            {
+                $orders = $this->request->data['Order'];
+            //    pr($orders); exit();
+                foreach($orders as $i => $product):
+                   
+                    if($i !== 'dateneeded'):
+                        $options = array();
+                    foreach($product as $j => $flavor):
+                        
+                        if($j === 'options')
+                        {
+                            $options = $flavor;
+                            unset($orders[$i][$j]);
+                        }
+                        else
+                        {
+                        if(empty($flavor['quantity']))
+                            unset($orders[$i][$j]);
+                        else
+                        {
+                            if(!empty($options))
+                                $orders[$i][$j]['options'] = $options;
+                        }
+                        }
+                    endforeach;
+                    endif;
+                    if(empty($orders[$i]))
+                        unset($orders[$i]);
+                endforeach;
+             //   pr($orders);
+            //    exit();
+                $this->loadModel('Order');
+                $this->Order->create();
+                $o = serialize($orders);
+                $newOrder = array('data' => $o, 'user_id' => $this->Auth->user('id'));
+              
+                if($this->Order->save($newOrder)) {
+                $this->Session->setFlash('Your order has been saved!');
+                }
+                else
+                {
+                     $this->Session->setFlash('A saving error occurred!');
+                   
+                }
+            }
+            $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
+           if(!isset($id))
+           {
+                $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
+           }
+            else
+            {
+                $products = $this->Product->findById($id, array('recursive' => 2));
+            }
+            
+            $this->set('products', $products);
+        
+//          echo pr($products, true); exit();
+    } 
          
     //Adds and Edits Favorites
     public function admin_add_favorites($userId = null){

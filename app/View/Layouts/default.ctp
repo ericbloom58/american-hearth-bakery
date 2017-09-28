@@ -64,8 +64,7 @@
                     </div>
                     <div class="float-right">
                         <ul class="cart">
-                            <li><a href="/admin"><i class="fa fa-sign-in"></i>Sign in</a> (or) <a href="/admin/users/logout">Logout</a> </li>
-                            <li><i class="fa fa-shopping-cart"></i>(0) items in cart | ($0.00)</li>
+                            <li><a href="/admin"><i class="fa fa-sign-in"></i>Sign in</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +79,6 @@
                             <li class="menu-item current-page-item"><a href="/">Home</a></li>
                             <li class="menu-item"><a href="/about">About Us</a></li>
                             <li class="menu-item"><a href="/products">View Products</a></li>
-                            <li class="menu-item"><a href="/orders/creator">Place an Order</a></li>
                             <li class="menu-item"><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
                     </nav>
@@ -135,7 +133,6 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="/about">About Us</a></li>
                             <li><a href="/products">View Products</a></li>
-                            <li><a href="/orders/creator">Place an Order</a></li>
                             <li><a href="/pages/contactus">Contact Us</a></li>
                         </ul>
                     </div>

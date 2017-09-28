@@ -279,4 +279,90 @@ class OrdersController extends AppController{
 		}
 		return $this->redirect(array('action' => 'index'));
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function admin_tablecreator($id = null) {
+            if(!empty($this->request->data))
+            {
+                $orders = $this->request->data['Order'];
+            //    pr($orders); exit();
+                foreach($orders as $i => $product):
+                   
+                    if($i !== 'dateneeded'):
+                        $options = array();
+                    foreach($product as $j => $flavor):
+                        
+                        if($j === 'options')
+                        {
+                            $options = $flavor;
+                            unset($orders[$i][$j]);
+                        }
+                        else
+                        {
+                        if(empty($flavor['quantity']))
+                            unset($orders[$i][$j]);
+                        else
+                        {
+                            if(!empty($options))
+                                $orders[$i][$j]['options'] = $options;
+                        }
+                        }
+                    endforeach;
+                    endif;
+                    if(empty($orders[$i]))
+                        unset($orders[$i]);
+                endforeach;
+             //   pr($orders);
+            //    exit();
+                $this->loadModel('Order');
+                $this->Order->create();
+                $o = serialize($orders);
+                $newOrder = array('data' => $o, 'user_id' => $this->Auth->user('id'));
+              
+                if($this->Order->save($newOrder)) {
+                $this->Session->setFlash('Your order has been saved!');
+                }
+                else
+                {
+                     $this->Session->setFlash('A saving error occurred!');
+                   
+                }
+            }
+            $this->loadModel('Category'); //loads Category's Model then using the if below sets the PR to sort via Category THEN Product
+           if(!isset($id))
+           {
+                $products = $this->Category->find('all', array('recursive' => 3, 'order' => 'Category.name ASC'));
+           }
+            else
+            {
+                $products = $this->Product->findById($id, array('recursive' => 2));
+            }
+            
+            $this->set('products', $products);
+        
+//          echo pr($products, true); exit();
+    } 
 }
